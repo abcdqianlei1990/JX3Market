@@ -123,6 +123,7 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
             case R.id.login_register:
             {
                 Log.d("chan", "REGISTER BUTTON IS CLICKED...");
+                RegisterActivity.jumpToThisActivity(this);
             }
             break;
             case R.id.login_sign_in_button:

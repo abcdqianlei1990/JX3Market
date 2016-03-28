@@ -55,6 +55,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/action_sign_in"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="#ffffff"
             android:textStyle="bold" />
 
         <TextView
@@ -62,6 +64,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="注册"/>
+            android:layout_gravity="right"
+            android:text="注册"
+            android:textColor="@color/colorAccent"
+            android:textSize="17dp"/>
     </LinearLayout>
 </LinearLayout>

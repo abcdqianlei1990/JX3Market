@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import base.BaseModelImpl;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindCallback;
@@ -21,10 +22,10 @@ import constants.Keys;
  * Created by qianlei on 2016-03-28.15:55
  * class description:
  */
-public class LoginModelImpl implements ILoginModel {
+public class LoginModelImpl extends BaseModelImpl implements ILoginModel {
 
     private LoginActivity activity;
-    private static final String USER_TABLE_NAME = "user_t";
+
     int ret = -1;   //返回值
     LoginPresenterImpl presenter;
 
