@@ -32,6 +32,9 @@
         <activity android:name=".viewimpl.RegisterActivity">
 
         </activity>
+        <activity android:name=".viewimpl.MainActivity">
+
+        </activity>
     </application>
 
 </manifest>

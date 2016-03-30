@@ -8,6 +8,7 @@ import com.chan.jx3_market.modelimpl.LoginModelImpl;
 import com.chan.jx3_market.presenter.ILoginPresenter;
 import com.chan.jx3_market.view.ILogin;
 import com.chan.jx3_market.viewimpl.LoginActivity;
+import com.chan.jx3_market.viewimpl.MainActivity;
 
 import constants.ToastMsg;
 import rx.Observable;
@@ -92,7 +93,9 @@ public class LoginPresenterImpl implements ILoginPresenter {
         } else if (ret == 2) {
             mLoginActivity.showToast(ToastMsg.NAME_OR_PWD_ERR);
         } else {
-            mLoginActivity.showToast("登录成功");
+//            mLoginActivity.showToast("登录成功");
+            //跳转到主页
+            MainActivity.jumpToMainActivity(mLoginActivity);
         }
     }
 }
