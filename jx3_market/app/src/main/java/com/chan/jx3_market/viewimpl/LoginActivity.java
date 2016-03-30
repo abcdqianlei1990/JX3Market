@@ -129,13 +129,31 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
             case R.id.login_sign_in_button:
             {
                 Log.d("chan", "LOGIN BUTTON IS CLICKED...");
-                UserInfo info = new UserInfo();
-                info.setUsername(mUserNameEd.getText().toString().trim());
-                info.setPassword(mPasswordView.getText().toString().trim());
-                mLoginPresenter.login(info);
+                if(inputOK()){
+                    UserInfo info = new UserInfo();
+                    info.setUsername(mUserNameEd.getText().toString().trim());
+                    info.setPassword(mPasswordView.getText().toString().trim());
+                    mLoginPresenter.login(info);
+                }else{
+                    showToast("用户名或密码不能为空");
+                }
+
             }
             break;
         }
+    }
+
+    /**
+     * 用户输入check
+     * @return
+     */
+    public boolean inputOK(){
+        String username = mUserNameEd.getText().toString().trim();
+        String pwd = mPasswordView.getText().toString().trim();
+        if(TextUtils.isEmpty(username) || TextUtils.isEmpty(pwd)){
+            return false;
+        }
+        return true;
     }
 }
 
