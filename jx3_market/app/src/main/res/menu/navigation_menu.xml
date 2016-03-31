@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/navigation_item_one"
+            android:icon="@mipmap/ic_launcher"
+            android:checkable="true"
+            android:title="我的动态">
+        </item>
+        <item
+            android:id="@+id/navigation_item_two"
+            android:icon="@mipmap/ic_launcher"
+            android:checkable="true"
+            android:title="我的留言"></item>
+        <item
+            android:id="@+id/navigation_item_three"
+            android:icon="@mipmap/ic_launcher"
+            android:checkable="true"
+            android:title="附近的人"></item>
+    </group>
+    <!--<item android:title="Sub items"-->
+        <!-->-->
+        <!--<menu>-->
+            <!--<group android:checkableBehavior="single">-->
+            <!--<item-->
+                <!--android:id="@+id/navigation_sub_item_one"-->
+                <!--android:icon="@mipmap/ic_launcher"-->
+                <!--android:checkable="true"-->
+                <!--android:title="Sub item 1"/>-->
+            <!--<item-->
+                <!--android:id="@+id/navigation_sub_item_two"-->
+                <!--android:icon="@mipmap/ic_launcher"-->
+                <!--android:checkable="true"-->
+                <!--android:title="Sub item 2"/>-->
+            <!--</group>-->
+        <!--</menu>-->
+    <!--</item>-->
+</menu>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<menu xmlns:android="http://schemas.android.com/apk/res/android">-->
+    <!--<group android:checkableBehavior="single">-->
+    <!--<item android:id="@+id/navigation_item_one"-->
+         <!--android:icon="@mipmap/ic_launcher"-->
+         <!--android:title="QQ" />-->
+
+    <!--<item android:id="@+id/navigation_item_two"-->
+        <!--android:icon="@mipmap/ic_launcher"-->
+        <!--android:title="YY" />-->
+
+    <!--<item android:id="@+id/navigation_item_three"-->
+        <!--android:icon="@mipmap/ic_launcher"-->
+        <!--android:title="已发布的信息" />-->
+    <!--</group>-->
+<!--</menu>-->

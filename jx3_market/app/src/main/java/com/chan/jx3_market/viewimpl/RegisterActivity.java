@@ -95,7 +95,7 @@ public class RegisterActivity extends BaseActivity implements IRegister,View.OnC
                 info.setYy(yy);
                 presenter.register(info);
             }else{
-                showToast(ToastMsg.REGISTER_BUTTON_CLICK_NOTE);
+                showToast(mRegisterBtn,ToastMsg.REGISTER_BUTTON_CLICK_NOTE);
             }
 
         }

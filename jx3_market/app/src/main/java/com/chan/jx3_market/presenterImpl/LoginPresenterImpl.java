@@ -89,9 +89,9 @@ public class LoginPresenterImpl implements ILoginPresenter {
     public void handleResult(int ret){
         Log.d("chan", "ret ==> " + ret);
         if (ret == 1) {
-            mLoginActivity.showToast(ToastMsg.USER_NOT_EXIST);
+//            mLoginActivity.showToast(mLoginActivity.getToastMsg.USER_NOT_EXIST);
         } else if (ret == 2) {
-            mLoginActivity.showToast(ToastMsg.NAME_OR_PWD_ERR);
+//            mLoginActivity.showToast(ToastMsg.NAME_OR_PWD_ERR);
         } else {
 //            mLoginActivity.showToast("登录成功");
             //跳转到主页

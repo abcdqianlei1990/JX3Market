@@ -2,6 +2,8 @@ package com.chan.jx3_market.viewimpl;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -129,13 +131,14 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
             case R.id.login_sign_in_button:
             {
                 Log.d("chan", "LOGIN BUTTON IS CLICKED...");
+                initAnimators(mSignInButton);
                 if(inputOK()){
                     UserInfo info = new UserInfo();
                     info.setUsername(mUserNameEd.getText().toString().trim());
                     info.setPassword(mPasswordView.getText().toString().trim());
                     mLoginPresenter.login(info);
                 }else{
-                    showToast("用户名或密码不能为空");
+                    showToast(mSignInButton,"用户名或密码不能为空");
                 }
 
             }
@@ -154,6 +157,18 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
             return false;
         }
         return true;
+    }
+
+    public void initAnimators(Object target){
+        ObjectAnimator animator1 = ObjectAnimator.
+                ofFloat(target, "scaleX", 1.0f, 0.7f);
+        ObjectAnimator animator2 = ObjectAnimator.
+                ofFloat(target, "scaleX", 0.7f, 1.0f);
+        AnimatorSet set = new AnimatorSet();
+        set.play(animator1);
+        set.play(animator2);
+        set.setDuration(500);
+        set.start();
     }
 }
 

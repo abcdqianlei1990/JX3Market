@@ -5,5 +5,7 @@ package com.chan.jx3_market.view;
  * class description:
  */
 public interface IMainActivity {
+
+    public String getSearchContent();
     public void handleSearchEvent();
 }

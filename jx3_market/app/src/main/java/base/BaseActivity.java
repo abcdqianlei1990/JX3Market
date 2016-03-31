@@ -1,8 +1,14 @@
 package base;
 
 import android.app.Activity;
+import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Toast;
+
+import com.chan.jx3_market.R;
 
 /**
  * Created by qianlei on 2016-03-28.16:43
@@ -15,9 +21,9 @@ public class BaseActivity extends AppCompatActivity {
      *
      * @param toastMsg
      */
-    public void showToast(String toastMsg) {
+    public void showToast(View view,String toastMsg) {
         if(!"非法用户".equals(toastMsg)){
-            showToast(toastMsg, Toast.LENGTH_SHORT);
+            showToast(view,toastMsg, Toast.LENGTH_SHORT);
         }
     }
 
@@ -26,7 +32,9 @@ public class BaseActivity extends AppCompatActivity {
      *
      * @param toastMsg
      */
-    public void showToast(String toastMsg, int duration) {
-        Toast.makeText(this, toastMsg, duration).show();
+    public void showToast(View view,String toastMsg, int duration) {
+//        Toast.makeText(this, toastMsg, duration).show();
+        Snackbar.make(view,toastMsg,duration).show();
     }
+
 }

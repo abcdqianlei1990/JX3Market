@@ -1,73 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
 
-    <android.support.v7.widget.SearchView
+    >
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/main_drawerlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:iconifiedByDefault="true"
-        android:imeOptions="actionSearch"/>
+        android:layout_height="match_parent"
+        >
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/main_search_all"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        card_view:cardBackgroundColor="@android:color/white"
-        card_view:cardCornerRadius="10dp"
-        android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        card_view:cardElevation="4dp">
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="查看订单"
-            android:textSize="30dp"
-            android:textColor="@color/colorPrimary"
             android:gravity="center"
-            />
-    </android.support.v7.widget.CardView>
+            android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/main_search_my"
-        android:layout_width="match_parent"
+            <!-- #############搜索框############## -->
+            <android.support.v7.widget.SearchView
+                android:id="@+id/main_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:iconifiedByDefault="true"
+                android:imeOptions="actionSearch" />
+
+            <!-- #############查看订单############## -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/main_search_all"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="查看订单"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="20dp" />
+            </android.support.v7.widget.CardView>
+
+            <!-- #############我的订单############## -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/main_search_my"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="我的订单"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textSize="20dp" />
+            </android.support.v7.widget.CardView>
+
+            <!-- #############关于############## -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/main_about_author"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="关于"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:textSize="20dp" />
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/main_navigation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/view_navegation_header"
+            app:menu="@menu/navigation_menu"
+            />
+
+    </android.support.v4.widget.DrawerLayout>
+
+    <!-- #############悬浮操作按钮############## -->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/main_fab"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        card_view:cardBackgroundColor="@android:color/white"
-        card_view:cardCornerRadius="10dp"
-        card_view:cardElevation="4dp">
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_dialog_email" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="查看自己最近发布的订单"
-            android:textSize="30dp"
-            android:textColor="@color/colorPrimary"
-            android:gravity="center"
-            />
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/main_about_author"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        card_view:cardBackgroundColor="@android:color/white"
-        card_view:cardCornerRadius="10dp"
-        card_view:cardElevation="4dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="关于作者"
-            android:textSize="30dp"
-            android:textColor="@color/colorPrimary"
-            android:gravity="center"
-            />
-    </android.support.v7.widget.CardView>
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

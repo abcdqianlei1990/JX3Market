@@ -49,16 +49,16 @@ public class RegisterPresenterImpl implements IRegisterPresenter {
     public void handleRet(int ret) {
         Log.d("chan", "ret ==> " + ret);
         if (ret == 3) {
-            activity.showToast(ToastMsg.USER_EXIST);
+//            activity.showToast(activity,ToastMsg.USER_EXIST);
         }
     }
 
     @Override
     public void handleCallBack(int code) {
         if(0 == code){
-            activity.showToast(ToastMsg.REGISTER_SUCCESS);
+//            activity.showToast(activity,ToastMsg.REGISTER_SUCCESS);
         }else {
-            activity.showToast(ToastMsg.REGISTER_FAILURE);
+//            activity.showToast(activity,ToastMsg.REGISTER_FAILURE);
         }
     }
 }
