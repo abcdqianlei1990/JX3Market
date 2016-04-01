@@ -1,32 +1,13 @@
 package com.chan.jx3_market.viewimpl;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,13 +19,10 @@ import com.chan.jx3_market.presenter.ILoginPresenter;
 import com.chan.jx3_market.presenterImpl.LoginPresenterImpl;
 import com.chan.jx3_market.view.ILogin;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import base.BaseActivity;
 import cn.bmob.v3.Bmob;
+import util.AnimatorUtil;
 
-import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * 登录界面
@@ -72,9 +50,6 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
         mLoginPresenter = LoginPresenterImpl.getInstance(this);
         mLoginPresenter.onCreate();
         initViews();
-
-//        mLoginFormView = findViewById(R.id.login_form);
-//        mProgressView = findViewById(R.id.login_progress);
     }
 
     protected void initViews(){
@@ -113,6 +88,7 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
 
 
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -131,7 +107,7 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
             case R.id.login_sign_in_button:
             {
                 Log.d("chan", "LOGIN BUTTON IS CLICKED...");
-                initAnimators(mSignInButton);
+                AnimatorUtil.performClickAnimator(mSignInButton);
                 if(inputOK()){
                     UserInfo info = new UserInfo();
                     info.setUsername(mUserNameEd.getText().toString().trim());
@@ -146,6 +122,20 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
         }
     }
 
+    @Override
+    public void onLoginSuccess(UserInfo info) {
+        UserInfo i = new UserInfo();
+        i.setUsername(mUserNameEd.getText().toString().trim());
+        i.setPassword(mPasswordView.getText().toString().trim());
+        app.setInfo(i);
+        MainActivity.jumpToMainActivity(this);
+    }
+
+    @Override
+    public void onLoginFailure(int code) {
+        showToast(mSignInButton,"登录失败");
+    }
+
     /**
      * 用户输入check
      * @return
@@ -157,18 +147,6 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
             return false;
         }
         return true;
-    }
-
-    public void initAnimators(Object target){
-        ObjectAnimator animator1 = ObjectAnimator.
-                ofFloat(target, "scaleX", 1.0f, 0.7f);
-        ObjectAnimator animator2 = ObjectAnimator.
-                ofFloat(target, "scaleX", 0.7f, 1.0f);
-        AnimatorSet set = new AnimatorSet();
-        set.play(animator1);
-        set.play(animator2);
-        set.setDuration(500);
-        set.start();
     }
 }
 

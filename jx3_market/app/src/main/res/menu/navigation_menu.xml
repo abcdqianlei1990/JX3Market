@@ -5,18 +5,18 @@
             android:id="@+id/navigation_item_one"
             android:icon="@mipmap/ic_launcher"
             android:checkable="true"
-            android:title="我的动态">
+            android:title="QQ">
         </item>
         <item
             android:id="@+id/navigation_item_two"
             android:icon="@mipmap/ic_launcher"
             android:checkable="true"
-            android:title="我的留言"></item>
+            android:title="YY"></item>
         <item
             android:id="@+id/navigation_item_three"
             android:icon="@mipmap/ic_launcher"
             android:checkable="true"
-            android:title="附近的人"></item>
+            android:title="我的订单"></item>
     </group>
     <!--<item android:title="Sub items"-->
         <!-->-->

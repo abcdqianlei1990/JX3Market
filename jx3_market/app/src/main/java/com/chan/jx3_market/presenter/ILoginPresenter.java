@@ -27,4 +27,8 @@ public interface ILoginPresenter {
      * 登录
      */
     public void login(UserInfo info);
+
+    public void onLoginSuccess(UserInfo info);
+
+    public void onLoginFailure(int code);
 }

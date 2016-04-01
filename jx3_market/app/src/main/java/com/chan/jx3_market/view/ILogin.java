@@ -2,6 +2,8 @@ package com.chan.jx3_market.view;
 
 import android.view.View;
 
+import com.chan.jx3_market.bean.UserInfo;
+
 /**
  * Created by qianlei on 2016-03-25.19:35
  * class description:
@@ -19,5 +21,9 @@ public interface ILogin {
      * @return
      */
     public String getPassword();
+
+    public void onLoginSuccess(UserInfo info);
+
+    public void onLoginFailure(int code);
 
 }

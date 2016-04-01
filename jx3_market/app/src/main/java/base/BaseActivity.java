@@ -2,6 +2,7 @@ package base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -15,6 +16,14 @@ import com.chan.jx3_market.R;
  * class description:
  */
 public class BaseActivity extends AppCompatActivity {
+
+    public JX3Application app;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        app = JX3Application.getInstance();
+    }
 
     /**
      * 显示toast
@@ -32,9 +41,10 @@ public class BaseActivity extends AppCompatActivity {
      *
      * @param toastMsg
      */
-    public void showToast(View view,String toastMsg, int duration) {
+    private void showToast(View view,String toastMsg, int duration) {
 //        Toast.makeText(this, toastMsg, duration).show();
         Snackbar.make(view,toastMsg,duration).show();
     }
+
 
 }

@@ -45,15 +45,18 @@ public class LoginModelImpl extends BaseModelImpl implements ILoginModel {
                 Log.d("chan", "jsonArray ==>" + jsonArray.toString());
                 try {
                     if (jsonArray.length() == 0) {
-                        presenter.handleResult(Keys.USER_NOT_EXIST);
+//                        presenter.handleResult(Keys.USER_NOT_EXIST);
+                        presenter.onLoginFailure(Keys.USER_NOT_EXIST);
                     } else {
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
                         String password = jsonObject.getString("password");
                         if (password.equals(info.getPassword())) {
-                            presenter.handleResult(Keys.LOGIN_SUCCESS);
+//                            presenter.handleResult(Keys.LOGIN_SUCCESS);
+                            presenter.onLoginSuccess(info);
                         } else {
                             ret = Keys.NAME_OR_PWD_ERR;
-                            presenter.handleResult(Keys.NAME_OR_PWD_ERR);
+//                            presenter.handleResult(Keys.NAME_OR_PWD_ERR);
+                            presenter.onLoginFailure(Keys.NAME_OR_PWD_ERR);
                         }
                     }
 

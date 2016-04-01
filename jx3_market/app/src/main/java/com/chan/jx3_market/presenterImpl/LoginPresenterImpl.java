@@ -86,16 +86,14 @@ public class LoginPresenterImpl implements ILoginPresenter {
         loginModel.verifyUser(info);
     }
 
-    public void handleResult(int ret){
-        Log.d("chan", "ret ==> " + ret);
-        if (ret == 1) {
-//            mLoginActivity.showToast(mLoginActivity.getToastMsg.USER_NOT_EXIST);
-        } else if (ret == 2) {
-//            mLoginActivity.showToast(ToastMsg.NAME_OR_PWD_ERR);
-        } else {
-//            mLoginActivity.showToast("登录成功");
-            //跳转到主页
-            MainActivity.jumpToMainActivity(mLoginActivity);
-        }
+    @Override
+    public void onLoginSuccess(UserInfo info) {
+        mLoginActivity.onLoginSuccess(info);
     }
+
+    @Override
+    public void onLoginFailure(int code) {
+        mLoginActivity.onLoginFailure(code);
+    }
+
 }

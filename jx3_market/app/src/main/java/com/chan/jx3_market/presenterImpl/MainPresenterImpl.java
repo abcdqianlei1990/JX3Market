@@ -1,5 +1,7 @@
 package com.chan.jx3_market.presenterImpl;
 
+import android.support.v7.app.AlertDialog;
+
 import com.chan.jx3_market.modelimpl.MainModelImpl;
 import com.chan.jx3_market.presenter.IMainPresenter;
 import com.chan.jx3_market.viewimpl.MainActivity;
@@ -37,6 +39,11 @@ public class MainPresenterImpl implements IMainPresenter {
 
     @Override
     public void performSearchAllClickEvent() {
+
+    }
+
+    @Override
+    public void performPublishClickEvent() {
 
     }
 

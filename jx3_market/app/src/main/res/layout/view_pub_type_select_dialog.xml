@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RadioGroup
+        android:layout_marginLeft="20dp"
+        android:id="@+id/pub_type_select_dialog_radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/pub_type_select_dialog_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账号"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/pub_type_select_dialog_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="游戏币"/>
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/pub_type_select_dialog_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="代练代打"/>
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/pub_type_select_dialog_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="其他商品"/>
+    </RadioGroup>
+    <!--<Button-->
+        <!--android:id="@+id/"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="确认"/>-->
+</LinearLayout>
