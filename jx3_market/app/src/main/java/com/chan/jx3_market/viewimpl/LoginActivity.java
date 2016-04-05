@@ -52,7 +52,7 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
         initViews();
     }
 
-    protected void initViews(){
+    public void initViews(){
         setContentView(R.layout.activity_login);
 
         mUserNameEd = (AutoCompleteTextView) findViewById(R.id.username);

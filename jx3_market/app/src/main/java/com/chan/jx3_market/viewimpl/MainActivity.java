@@ -27,6 +27,7 @@ import com.chan.jx3_market.presenterImpl.MainPresenterImpl;
 import com.chan.jx3_market.view.IMainActivity;
 
 import base.BaseActivity;
+import constants.Keys;
 import tyrantgit.explosionfield.ExplosionField;
 import util.AnimatorUtil;
 
@@ -55,6 +56,10 @@ public class MainActivity extends BaseActivity implements IMainActivity,View.OnC
     int screenHeight;
     int lastX;
     int lastY;
+
+    private static final int ACTION_CODE_SEARCH = 0;
+    private static final int ACTION_CODE_PUB = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,11 +149,11 @@ public class MainActivity extends BaseActivity implements IMainActivity,View.OnC
             case R.id.main_search_all:
                 AnimatorUtil.performClickAnimator(mSearchAll);
 //                mExplosionField.explode(v);
-                mPresenter.performSearchAllClickEvent();
+                showPubTypeSelectDialog(ACTION_CODE_SEARCH);
                 break;
             case R.id.main_publish:
                 AnimatorUtil.performClickAnimator(mPublish);
-                showPubTypeSelectDialog();
+                showPubTypeSelectDialog(ACTION_CODE_PUB);
                 break;
             case R.id.main_search_my:
                 AnimatorUtil.performClickAnimator(mSearchMy);
@@ -166,14 +171,18 @@ public class MainActivity extends BaseActivity implements IMainActivity,View.OnC
     }
 
 
-    public void showPubTypeSelectDialog(){
+    public void showPubTypeSelectDialog(final int action){
         final RadioGroup rg;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.view_pub_type_select_dialog,null);
         rg = (RadioGroup) view.findViewById(R.id.pub_type_select_dialog_radiogroup);
 
         builder.setView(view);
-        builder.setTitle("发布信息类型选择");
+        if(ACTION_CODE_PUB == action){
+            builder.setTitle("发布信息类型选择");
+        }else{
+            builder.setTitle("查询信息类型选择");
+        }
         builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -182,7 +191,12 @@ public class MainActivity extends BaseActivity implements IMainActivity,View.OnC
                 switch (checkedId){
                     case R.id.pub_type_select_dialog_account:
 //                        showToast(mPublish,"跳转到账号发布页面");
-                        AccountInfoPubActivity.jumpToThisActivity(MainActivity.this);
+                        if(ACTION_CODE_PUB == action){
+                            AccountInfoPubActivity.jumpToThisActivity(MainActivity.this);
+                        }else{
+//                            mPresenter.performSearchAllClickEvent(Keys.PUBLISH_INFO_TYPE_ACCOUNT);
+                            AccountInfoListActivity.jumpToThisActivity(MainActivity.this);
+                        }
                         break;
                     case R.id.pub_type_select_dialog_money:
                         showToast(mPublish,"跳转到金币发布页面");

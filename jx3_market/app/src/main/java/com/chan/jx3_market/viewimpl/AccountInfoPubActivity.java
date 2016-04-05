@@ -17,6 +17,7 @@ import com.chan.jx3_market.view.IAccountInfoPubActivity;
 
 
 import base.BaseActivity;
+import constants.Keys;
 import util.AnimatorUtil;
 
 /**
@@ -86,6 +87,7 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
             //先判断必填项有没有填
             if(inputCheckedOK()){
                 //增加数据
+                //每个用户每天只能发布一条信息，可以编辑发布的信息
                 presenter.performSubmitClickEvent(packageInputInfo());
             }else{
                 showToast(mSubmit,"小伙子，你有必填项没写啊");
@@ -111,6 +113,7 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
         info.setJjcLv(mJJCLv.getText().toString().trim());
         info.setCalling(mCalling.getText().toString().trim());
         info.setOther(mOther.getText().toString().trim());
+        info.setInfoType(Keys.PUBLISH_INFO_TYPE_ACCOUNT);
         return info;
     }
 
@@ -132,10 +135,11 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
     @Override
     public void onDataSaveSuccess() {
         Log.d("chan","账号信息发布完成");
+        showToast(mSubmit,"账号信息发布完成");
     }
 
     @Override
     public void onDataSaveFailure(int i, String s) {
-        Log.d("chan","账号信息发布失败，i="+i+"| s:"+s);
+        Log.d("chan","账号信息发布失败，code="+i+"| msg:"+s);
     }
 }

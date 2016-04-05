@@ -8,7 +8,7 @@ public interface IMainPresenter {
 
 
     public String getSearchContent();
-    public void performSearchAllClickEvent();
+    public void performSearchAllClickEvent(int type);
     public void performPublishClickEvent();
     public void performSearchMyClickEvent();
     public void performAboutClickEvent();

@@ -1,5 +1,6 @@
 package com.chan.jx3_market.bean;
 
+import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
@@ -21,7 +22,7 @@ public class AccountInfo extends BmobObject implements Parcelable{
     /**
      * 发布信息类型
      */
-    private String infoType;
+    private Integer infoType;
 
     /**
      * 门派
@@ -104,7 +105,7 @@ public class AccountInfo extends BmobObject implements Parcelable{
 
     protected AccountInfo(Parcel in) {
         username = in.readString();
-        infoType = in.readString();
+        infoType = in.readInt();
         profession = in.readString();
         bodyType = in.readString();
         pvpOrPve = in.readString();
@@ -142,11 +143,11 @@ public class AccountInfo extends BmobObject implements Parcelable{
         this.username = username;
     }
 
-    public String getInfoType() {
+    public Integer getInfoType() {
         return infoType;
     }
 
-    public void setInfoType(String infoType) {
+    public void setInfoType(Integer infoType) {
         this.infoType = infoType;
     }
 
@@ -279,10 +280,7 @@ public class AccountInfo extends BmobObject implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(username);
-        if(TextUtils.isEmpty(infoType)){
-            this.infoType = Keys.PUBLISH_INFO_TYPE_ACCOUNT;
-        }
-        dest.writeString(infoType);
+        dest.writeInt(infoType);
         dest.writeString(profession);
         dest.writeString(bodyType);
         dest.writeString(pvpOrPve);

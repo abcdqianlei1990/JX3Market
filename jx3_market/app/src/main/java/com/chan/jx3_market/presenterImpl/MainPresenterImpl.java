@@ -6,6 +6,8 @@ import com.chan.jx3_market.modelimpl.MainModelImpl;
 import com.chan.jx3_market.presenter.IMainPresenter;
 import com.chan.jx3_market.viewimpl.MainActivity;
 
+import constants.Keys;
+
 /**
  * Created by qianlei on 2016-03-31.14:01
  * class description:
@@ -38,8 +40,17 @@ public class MainPresenterImpl implements IMainPresenter {
     }
 
     @Override
-    public void performSearchAllClickEvent() {
-
+    public void performSearchAllClickEvent(int type) {
+        switch (type){
+            case Keys.PUBLISH_INFO_TYPE_ACCOUNT:
+                break;
+            case Keys.PUBLISH_INFO_TYPE_MONEY:
+                break;
+            case Keys.PUBLISH_INFO_TYPE_SERVICE:
+                break;
+            case Keys.PUBLISH_INFO_TYPE_OTHER:
+                break;
+        }
     }
 
     @Override

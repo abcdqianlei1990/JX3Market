@@ -46,5 +46,4 @@ public class BaseActivity extends AppCompatActivity {
         Snackbar.make(view,toastMsg,duration).show();
     }
 
-
 }

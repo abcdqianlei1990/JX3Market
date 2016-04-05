@@ -48,6 +48,11 @@
             >
 
         </activity>
+        <activity android:name=".viewimpl.AccountInfoListActivity"
+            android:label="账号信息列表"
+            >
+
+        </activity>
     </application>
 
 </manifest>
