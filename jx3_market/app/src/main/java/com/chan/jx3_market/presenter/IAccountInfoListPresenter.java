@@ -1,5 +1,6 @@
 package com.chan.jx3_market.presenter;
 
+import com.chan.jx3_market.bean.AccountEntity;
 import com.chan.jx3_market.bean.AccountInfo;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * class description:
  */
 public interface IAccountInfoListPresenter {
-    public ArrayList<AccountInfo> initDataPool();
-    public void onSuccess(ArrayList<AccountInfo> list);
+    public ArrayList<AccountInfo> initDataPool(int record);
+    public void onSuccess(AccountEntity entity);
     public void onFailure(int code,String msg);
 }

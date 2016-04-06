@@ -12,7 +12,7 @@ import constants.Keys;
  * Created by qianlei on 2016-04-01.10:32
  * class description:账号信息
  */
-public class AccountInfo extends BmobObject implements Parcelable{
+public class AccountInfo extends BmobObject{
 
     /**
      * 发布者用户名
@@ -99,41 +99,41 @@ public class AccountInfo extends BmobObject implements Parcelable{
      */
     private String other;
 
-    public AccountInfo() {
-        this.setTableName("account_t");
-    }
+//    public AccountInfo() {
+//        this.setTableName("account_t");
+//    }
 
-    protected AccountInfo(Parcel in) {
-        username = in.readString();
-        infoType = in.readInt();
-        profession = in.readString();
-        bodyType = in.readString();
-        pvpOrPve = in.readString();
-        score = in.readString();
-        expScore = in.readString();
-        limit = in.readString();
-        hair = in.readString();
-        mount = in.readString();
-        face = in.readString();
-        pet = in.readString();
-        clothes = in.readString();
-        zhanjie = in.readString();
-        jjcLv = in.readString();
-        calling = in.readString();
-        other = in.readString();
-    }
+//    protected AccountInfo(Parcel in) {
+//        username = in.readString();
+//        infoType = in.readInt();
+//        profession = in.readString();
+//        bodyType = in.readString();
+//        pvpOrPve = in.readString();
+//        score = in.readString();
+//        expScore = in.readString();
+//        limit = in.readString();
+//        hair = in.readString();
+//        mount = in.readString();
+//        face = in.readString();
+//        pet = in.readString();
+//        clothes = in.readString();
+//        zhanjie = in.readString();
+//        jjcLv = in.readString();
+//        calling = in.readString();
+//        other = in.readString();
+//    }
 
-    public static final Creator<AccountInfo> CREATOR = new Creator<AccountInfo>() {
-        @Override
-        public AccountInfo createFromParcel(Parcel in) {
-            return new AccountInfo(in);
-        }
-
-        @Override
-        public AccountInfo[] newArray(int size) {
-            return new AccountInfo[size];
-        }
-    };
+//    public static final Creator<AccountInfo> CREATOR = new Creator<AccountInfo>() {
+//        @Override
+//        public AccountInfo createFromParcel(Parcel in) {
+//            return new AccountInfo(in);
+//        }
+//
+//        @Override
+//        public AccountInfo[] newArray(int size) {
+//            return new AccountInfo[size];
+//        }
+//    };
 
     public String getUsername() {
         return username;
@@ -272,29 +272,29 @@ public class AccountInfo extends BmobObject implements Parcelable{
     }
 
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(username);
-        dest.writeInt(infoType);
-        dest.writeString(profession);
-        dest.writeString(bodyType);
-        dest.writeString(pvpOrPve);
-        dest.writeString(score);
-        dest.writeString(expScore);
-        dest.writeString(limit);
-        dest.writeString(hair);
-        dest.writeString(mount);
-        dest.writeString(face);
-        dest.writeString(pet);
-        dest.writeString(clothes);
-        dest.writeString(zhanjie);
-        dest.writeString(jjcLv);
-        dest.writeString(calling);
-        dest.writeString(other);
-    }
+//    @Override
+//    public int describeContents() {
+//        return 0;
+//    }
+//
+//    @Override
+//    public void writeToParcel(Parcel dest, int flags) {
+//        dest.writeString(username);
+//        dest.writeInt(infoType);
+//        dest.writeString(profession);
+//        dest.writeString(bodyType);
+//        dest.writeString(pvpOrPve);
+//        dest.writeString(score);
+//        dest.writeString(expScore);
+//        dest.writeString(limit);
+//        dest.writeString(hair);
+//        dest.writeString(mount);
+//        dest.writeString(face);
+//        dest.writeString(pet);
+//        dest.writeString(clothes);
+//        dest.writeString(zhanjie);
+//        dest.writeString(jjcLv);
+//        dest.writeString(calling);
+//        dest.writeString(other);
+//    }
 }

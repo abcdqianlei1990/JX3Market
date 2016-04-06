@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/profession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="门派：纯阳"/>
+    <TextView
+        android:id="@+id/pvporpve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/profession"
+        android:layout_marginLeft="10dp"
+        android:text="PVPorPVE：PVE"/>
+    <TextView
+        android:id="@+id/bodyType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/pvporpve"
+        android:layout_marginLeft="10dp"
+        android:text="体型：成男"/>
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profession"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="装分：17000"/>
+
+    <TextView
+        android:id="@+id/expScore"
+        android:layout_below="@+id/profession"
+        android:layout_toRightOf="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="资历：40000"/>
+
+    <TextView
+        android:id="@+id/hair"
+        android:layout_below="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="发型：老白发"/>
+
+    <TextView
+        android:id="@+id/zhanjie"
+        android:layout_below="@+id/hair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="战阶：14"/>
+    <TextView
+        android:id="@+id/jjcLv"
+        android:layout_below="@+id/hair"
+        android:layout_toRightOf="@+id/zhanjie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="jjc段位：12"/>
+
+
+    <TextView
+        android:id="@+id/limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/jjcLv"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="限量：五红"/>
+
+    <TextView
+        android:id="@+id/face"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/limit"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="脸型：阴阳脸"/>
+
+    <TextView
+        android:id="@+id/clothes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/face"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="成衣：最新的"/>
+
+    <TextView
+        android:id="@+id/mount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/clothes"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="坐骑：里飞沙"/>
+
+    <TextView
+        android:id="@+id/calling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mount"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="称号：侠客行"/>
+
+    <TextView
+        android:id="@+id/pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calling"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="宠物：都有"/>
+
+    <TextView
+        android:id="@+id/other"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pet"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="其他描述：其他描述"/>
+    <View
+        android:id="@+id/border"
+        android:layout_below="@+id/other"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@android:color/darker_gray"/>
+</RelativeLayout>

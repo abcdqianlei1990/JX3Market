@@ -29,4 +29,5 @@ dependencies {
     compile 'io.reactivex:rxjava:1.0.14'
     compile 'io.reactivex:rxandroid:1.0.1'
     compile files('libs/BmobSDK_V3.4.5_1111.jar')
+    compile files('libs/fastjson-1.1.43.android.jar')
 }

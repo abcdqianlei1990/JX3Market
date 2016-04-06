@@ -9,5 +9,5 @@ import java.util.ArrayList;
  * class description:
  */
 public interface IAccountInfoListModel {
-    public void queryAll();
+    public void queryAll(int record);
 }

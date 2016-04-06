@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +26,7 @@ import util.AnimatorUtil;
  * Created by qianlei on 2016-04-01.11:05
  * class description:
  */
-public class AccountInfoPubActivity extends BaseActivity implements IAccountInfoPubActivity,View.OnClickListener{
+public class AccountInfoPubActivity extends BaseActivity implements IAccountInfoPubActivity,View.OnClickListener,View.OnFocusChangeListener{
 
     private EditText mProfession;
     private EditText mBodyType;
@@ -42,6 +44,7 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
     private EditText mCalling;
     private EditText mOther;
     private CardView mSubmit;
+
 
     private AccountInfoPubPresenterImpl presenter;
 
@@ -70,6 +73,21 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
         mCalling = (EditText) findViewById(R.id.account_pub_calling);
         mOther = (EditText) findViewById(R.id.account_pub_other);
         mSubmit = (CardView) findViewById(R.id.account_pub_submit);
+
+        mProfession.addTextChangedListener(new MyTextChangedListener(mProfession));
+        mBodyType.addTextChangedListener(new MyTextChangedListener(mBodyType));
+        mPvpOrPve.addTextChangedListener(new MyTextChangedListener(mPvpOrPve));
+        mScore.addTextChangedListener(new MyTextChangedListener(mScore));
+        mExpScore.addTextChangedListener(new MyTextChangedListener(mExpScore));
+        //设置焦点监控
+        mProfession.setOnFocusChangeListener(this);
+        mExpScore.setOnFocusChangeListener(this);
+        mScore.setOnFocusChangeListener(this);
+        mBodyType.setOnFocusChangeListener(this);
+        mPvpOrPve.setOnFocusChangeListener(this);
+        mZhanjie.setOnFocusChangeListener(this);
+        mJJCLv.setOnFocusChangeListener(this);
+
 
         mSubmit.setOnClickListener(this);
 
@@ -126,7 +144,11 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
         String body = mBodyType.getText().toString().trim();
         String pv = mPvpOrPve.getText().toString().trim();
         String score = mScore.getText().toString().trim();
-        if(TextUtils.isEmpty(pro)||TextUtils.isEmpty(body)||TextUtils.isEmpty(pv)||TextUtils.isEmpty(score)){
+        String exp = mExpScore.getText().toString().trim();
+        String zhanjie = mZhanjie.getText().toString().trim();
+        String jjc = mJJCLv.getText().toString().trim();
+        if(TextUtils.isEmpty(pro)||TextUtils.isEmpty(body)||TextUtils.isEmpty(pv)||TextUtils.isEmpty(score)
+                || TextUtils.isEmpty(exp) || TextUtils.isEmpty(zhanjie) || TextUtils.isEmpty(jjc)){
             return false;
         }
         return true;
@@ -141,5 +163,73 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
     @Override
     public void onDataSaveFailure(int i, String s) {
         Log.d("chan","账号信息发布失败，code="+i+"| msg:"+s);
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        int id = v.getId();
+        switch (id){
+            case R.id.account_pub_profession:
+                if(!hasFocus && TextUtils.isEmpty(mProfession.getText().toString().trim())){
+                    mProfession.setError("该项为必填项");
+                }
+                break;
+            case R.id.account_pub_pvporpve:
+                if(!hasFocus && TextUtils.isEmpty(mPvpOrPve.getText().toString().trim())){
+                    mPvpOrPve.setError("该项为必填项");
+                }
+                break;
+            case R.id.account_pub_body:
+                if(!hasFocus && TextUtils.isEmpty(mBodyType.getText().toString().trim())){
+                    mBodyType.setError("该项为必填项");
+                }
+                break;
+            case R.id.account_pub_score:
+                if(!hasFocus && TextUtils.isEmpty(mScore.getText().toString().trim())){
+                    mScore.setError("该项为必填项");
+                }
+                break;
+            case R.id.account_pub_expscore:
+                if(!hasFocus && TextUtils.isEmpty(mExpScore.getText().toString().trim())){
+                    mExpScore.setError("该项为必填项");
+                }
+                break;
+            case R.id.account_pub_zhangjie:
+                if(!hasFocus && TextUtils.isEmpty(mZhanjie.getText().toString().trim())){
+                    mZhanjie.setError("该项为必填项");
+                }
+                break;
+            case R.id.account_pub_jjc:
+                if(!hasFocus && TextUtils.isEmpty(mJJCLv.getText().toString().trim())){
+                    mJJCLv.setError("该项为必填项");
+                }
+                break;
+        }
+    }
+
+    public class MyTextChangedListener implements TextWatcher {
+        EditText ed;
+        public MyTextChangedListener(EditText ed){
+            this.ed = ed;
+        }
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//            Log.d("chan","beforeTextChanged");
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+//            Log.d("chan","onTextChanged");
+            if(s.length() == 0){
+                ed.setError("该项为必填项");
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+//            if(s.toString().trim().length() <= 0){
+//                ed.setError("该项为必填项");
+//            }
+        }
     }
 }

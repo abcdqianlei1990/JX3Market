@@ -1,5 +1,6 @@
 package com.chan.jx3_market.presenterImpl;
 
+import com.chan.jx3_market.bean.AccountEntity;
 import com.chan.jx3_market.bean.AccountInfo;
 import com.chan.jx3_market.modelimpl.AccountInfoListModelImpl;
 import com.chan.jx3_market.presenter.IAccountInfoListPresenter;
@@ -36,18 +37,18 @@ public class AccountInfoListPresenterImpl implements IAccountInfoListPresenter {
     }
 
     @Override
-    public ArrayList<AccountInfo> initDataPool() {
-        model.queryAll();
+    public ArrayList<AccountInfo> initDataPool(int record) {
+        model.queryAll(record);
         return null;
     }
 
     @Override
-    public void onSuccess(ArrayList<AccountInfo> list) {
-
+    public void onSuccess(AccountEntity entity) {
+        activity.onSuccess(entity);
     }
 
     @Override
     public void onFailure(int code, String msg) {
-
+        activity.onFailure(code,msg);
     }
 }

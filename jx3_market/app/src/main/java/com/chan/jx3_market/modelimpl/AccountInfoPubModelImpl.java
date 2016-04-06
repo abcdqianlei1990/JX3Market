@@ -34,6 +34,7 @@ public class AccountInfoPubModelImpl implements IInfoPubModel {
     @Override
     public void insertToDB(BmobObject obj) {
         AccountInfo info = (AccountInfo)obj;
+        info.setTableName("account_t");
         info.save(activity, new SaveListener() {
             @Override
             public void onSuccess() {
