@@ -47,7 +47,7 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
         // 使用时请将第二个参数Application ID替换成你在Bmob服务器端创建的Application ID
         Bmob.initialize(this, APPLICATION_ID);
 
-        mLoginPresenter = LoginPresenterImpl.getInstance(this);
+        mLoginPresenter = new LoginPresenterImpl(this);
         mLoginPresenter.onCreate();
         initViews();
     }

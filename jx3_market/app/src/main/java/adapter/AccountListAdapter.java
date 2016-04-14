@@ -3,6 +3,7 @@ package adapter;
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,16 +29,18 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private RecyclerViewItemClickListener listener;
     private FooterViewClickListener footerViewClickListener;
     private boolean hasFooter = false;
+    int pos = 0;
 
-    public AccountListAdapter(Activity activity){
+    public AccountListAdapter(Activity activity,ArrayList<AccountInfo> data){
         this.activity = activity;
-//        this.data = data;
+        this.data = data;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
         RecyclerView.ViewHolder holder = null;
+        Log.d("qianlei","AccountListAdapter line42====>viewType="+viewType+" || position="+pos);
         if(viewType == 1){
             view = LayoutInflater.from(activity).inflate(R.layout.item_footer_list,null);
             holder = new FooterViewHolder(view,footerViewClickListener);
@@ -50,11 +53,11 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+        this.pos = position;
+        Log.d("qianlei","AccountListAdapter line57====>position="+position+"||data.size():"+data.size());
         if(holder instanceof AccountListViewHolder) {
-            int p = position -1 ;
             AccountListViewHolder h = (AccountListViewHolder) holder;
-            AccountInfo info = (AccountInfo)data.get(p);
+            AccountInfo info = data.get(position);
             h.profession.setText(info.getProfession());
             h.pvporpve.setText(info.getPvpOrPve());
             h.score.setText(info.getScore());
@@ -135,16 +138,13 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemCount() {
-        if(data != null ){
-            return hasFooter ? data.size() + 1 : data.size();
-        }else{
-            return 0;
-        }
+        return hasFooter ? data.size() + 1 : data.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if(hasFooter && position == data.size()-1){
+        //如果有footer，那么此时item count为data.size()+1，所以position == data.size()
+        if(hasFooter && position == data.size()){
             return 1;
         }
         return 2;
@@ -157,10 +157,6 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public void setOnFooterClickListener(FooterViewClickListener footerViewClickListener){
         this.footerViewClickListener = footerViewClickListener;
-    }
-
-    public void setData(ArrayList<AccountInfo> data){
-        this.data = data;
     }
 
     public void hasFooter(boolean b){

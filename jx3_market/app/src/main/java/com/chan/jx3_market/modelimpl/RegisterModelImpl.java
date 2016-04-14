@@ -26,9 +26,9 @@ public class RegisterModelImpl extends BaseModelImpl implements IRegisterModel {
     int ret = -1;   //返回值
     RegisterPresenterImpl presenter;
 
-    public RegisterModelImpl(RegisterActivity activity) {
+    public RegisterModelImpl(RegisterActivity activity,RegisterPresenterImpl presenter) {
         this.activity = activity;
-        presenter = RegisterPresenterImpl.getInstance(activity);
+        this.presenter = presenter;
     }
 
     @Override

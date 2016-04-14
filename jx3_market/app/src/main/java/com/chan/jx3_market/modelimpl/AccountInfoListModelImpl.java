@@ -12,6 +12,7 @@ import com.chan.jx3_market.viewimpl.AccountInfoListActivity;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import base.BaseEntity;
 import cn.bmob.v3.BmobQuery;
@@ -32,9 +33,9 @@ public class AccountInfoListModelImpl implements IAccountInfoListModel {
     private AccountInfoListActivity activity;
     private AccountInfoListPresenterImpl presenter;
 
-    public AccountInfoListModelImpl(AccountInfoListActivity activity) {
+    public AccountInfoListModelImpl(AccountInfoListActivity activity,AccountInfoListPresenterImpl presenter) {
         this.activity = activity;
-        presenter = AccountInfoListPresenterImpl.getInstance(activity);
+        this.presenter = presenter;
     }
 
     @Override
@@ -63,8 +64,8 @@ public class AccountInfoListModelImpl implements IAccountInfoListModel {
 
                 Log.d("chan", "result==>" + jsonArray.toString());
                 //每次执行查询的时候，都统计当前表中数据条数，用来进行分页操作
-                final BaseEntity<AccountInfo> entity = JsonUtil.parseEntity(BaseEntity.class,jsonArray.toString());
-                countAll(entity);
+                ArrayList<AccountInfo> infos = (ArrayList<AccountInfo>) JsonUtil.parseArray(AccountInfo.class, jsonArray.toString());
+                countAll(infos);
             }
 
             @Override
@@ -74,7 +75,7 @@ public class AccountInfoListModelImpl implements IAccountInfoListModel {
         });
     }
 
-    public void countAll(final BaseEntity<AccountInfo> et){
+    public void countAll(final ArrayList<AccountInfo> et){
         final String bql = "select count(*) from account_t";
         BmobQuery<AccountInfo> query = new BmobQuery<AccountInfo>("account_t");
         query.doSQLQuery(activity, bql, new SQLQueryListener<AccountInfo>() {
@@ -84,7 +85,7 @@ public class AccountInfoListModelImpl implements IAccountInfoListModel {
                     int count = bmobQueryResult.getCount();//这里得到符合条件的记录数
                     AccountEntity entity = new AccountEntity();
                     entity.setTotal(count);
-                    entity.setList(et.getList());
+                    entity.setList(et);
                     presenter.onSuccess(entity);
                 } else {
                     Log.i("chan", "错误码：" + e.getErrorCode() + "，错误描述：" + e.getMessage());

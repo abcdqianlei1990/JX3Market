@@ -63,7 +63,7 @@ public class MainActivity extends BaseActivity implements IMainActivity,View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = MainPresenterImpl.getInstance(this);
+        mPresenter = new MainPresenterImpl(this);
         DisplayMetrics dm = getResources().getDisplayMetrics();
         screenWidth = dm.widthPixels;
         screenHeight = dm.heightPixels - 50;

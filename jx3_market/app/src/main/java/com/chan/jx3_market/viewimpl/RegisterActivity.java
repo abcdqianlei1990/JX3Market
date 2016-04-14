@@ -33,7 +33,7 @@ public class RegisterActivity extends BaseActivity implements IRegister,View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = RegisterPresenterImpl.getInstance(this);
+        presenter = new RegisterPresenterImpl(this);
         initViews();
     }
 

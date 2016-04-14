@@ -13,25 +13,14 @@ import com.chan.jx3_market.viewimpl.AccountInfoPubActivity;
  */
 public class AccountInfoPubPresenterImpl implements IAccountInfoPubPresenter {
 
-    private static AccountInfoPubActivity activity;
-    private static AccountInfoPubModelImpl model;
-    private static volatile AccountInfoPubPresenterImpl presenter;
+    private  AccountInfoPubActivity activity;
+    private  AccountInfoPubModelImpl model;
 
-    private AccountInfoPubPresenterImpl() {
+    public AccountInfoPubPresenterImpl(AccountInfoPubActivity ac) {
+        activity = ac;
+        model = new AccountInfoPubModelImpl(ac,this);
     }
 
-    public static AccountInfoPubPresenterImpl getInstance(final AccountInfoPubActivity ac){
-        if(presenter == null){
-            synchronized(LoginPresenterImpl.class){
-                if(presenter == null){
-                    presenter = new AccountInfoPubPresenterImpl();
-                    activity = ac;
-                    model = new AccountInfoPubModelImpl(ac);
-                }
-            }
-        }
-        return presenter;
-    }
     @Override
     public void performSubmitClickEvent(AccountInfo info) {
         model.userPubInfoCheck(info);

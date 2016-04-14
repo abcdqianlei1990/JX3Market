@@ -14,26 +14,12 @@ import java.util.ArrayList;
  */
 public class AccountInfoListPresenterImpl implements IAccountInfoListPresenter {
 
-    private static AccountInfoListActivity activity;
-    private static AccountInfoListModelImpl model;
-    private static volatile AccountInfoListPresenterImpl presenter;
+    private  AccountInfoListActivity activity;
+    private  AccountInfoListModelImpl model;
 
-    private ArrayList<AccountInfo> data;
-
-    private AccountInfoListPresenterImpl() {
-    }
-
-    public static AccountInfoListPresenterImpl getInstance(final AccountInfoListActivity ac){
-        if(presenter == null){
-            synchronized(LoginPresenterImpl.class){
-                if(presenter == null){
-                    presenter = new AccountInfoListPresenterImpl();
-                    activity = ac;
-                    model = new AccountInfoListModelImpl(ac);
-                }
-            }
-        }
-        return presenter;
+    public AccountInfoListPresenterImpl(AccountInfoListActivity ac) {
+        this.activity = ac;
+        this.model = new AccountInfoListModelImpl(ac,this);
     }
 
     @Override

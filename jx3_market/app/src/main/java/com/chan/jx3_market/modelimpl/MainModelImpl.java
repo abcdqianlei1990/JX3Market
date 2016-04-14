@@ -13,8 +13,8 @@ public class MainModelImpl implements IMainModel {
     private MainActivity activity;
     MainPresenterImpl presenter;
 
-    public MainModelImpl(MainActivity activity) {
+    public MainModelImpl(MainActivity activity, MainPresenterImpl presenter) {
         this.activity = activity;
-        presenter = MainPresenterImpl.getInstance(activity);
+        this.presenter = presenter;
     }
 }

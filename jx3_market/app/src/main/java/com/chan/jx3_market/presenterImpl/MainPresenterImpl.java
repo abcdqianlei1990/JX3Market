@@ -14,24 +14,12 @@ import constants.Keys;
  */
 public class MainPresenterImpl implements IMainPresenter {
 
-    private static MainActivity activity;
-    private static MainModelImpl model;
-    private static volatile MainPresenterImpl presenter;
+    private  MainActivity activity;
+    private  MainModelImpl model;
 
-    private MainPresenterImpl() {
-    }
-
-    public static MainPresenterImpl getInstance(MainActivity ac){
-        if(presenter == null){
-            synchronized(MainPresenterImpl.class){
-                if(presenter == null){
-                    presenter = new MainPresenterImpl();
-                    activity = ac;
-                    model = new MainModelImpl(ac);
-                }
-            }
-        }
-        return presenter;
+    public MainPresenterImpl(MainActivity activity) {
+        this.activity = activity;
+        model = new MainModelImpl(activity,this);
     }
 
     @Override

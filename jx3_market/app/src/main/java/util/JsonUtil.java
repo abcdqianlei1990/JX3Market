@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 
+import java.util.List;
+
 import base.BaseEntity;
 
 /**
@@ -15,5 +17,10 @@ public class JsonUtil {
     public static <T>T parseEntity(Class<T> clazz,String json){
         String ret = "{ \"list\": " + json + "}";
         return JSON.parseObject(ret, clazz);
+    }
+
+    public static <T>List<T> parseArray(Class<T> clazz, String json){
+//        String ret = "{" + json + "}";
+        return JSON.parseArray(json,clazz);
     }
 }

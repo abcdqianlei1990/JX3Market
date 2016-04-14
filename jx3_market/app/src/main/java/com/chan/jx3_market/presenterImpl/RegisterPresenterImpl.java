@@ -15,24 +15,12 @@ import constants.ToastMsg;
  */
 public class RegisterPresenterImpl implements IRegisterPresenter {
 
-    private static RegisterActivity activity;
-    private static RegisterPresenterImpl presenter;
-    private static RegisterModelImpl model;
+    private  RegisterActivity activity;
+    private  RegisterModelImpl model;
 
-    private RegisterPresenterImpl() {
-    }
-
-    public static RegisterPresenterImpl getInstance(RegisterActivity ac) {
-        if (presenter == null) {
-            synchronized (RegisterPresenterImpl.class) {
-                if (presenter == null) {
-                    presenter = new RegisterPresenterImpl();
-                    activity = ac;
-                    model = new RegisterModelImpl(ac);
-                }
-            }
-        }
-        return presenter;
+    public RegisterPresenterImpl(RegisterActivity ac) {
+        this.activity = ac;
+        model = new RegisterModelImpl(activity,this);
     }
 
     @Override

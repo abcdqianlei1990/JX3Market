@@ -29,9 +29,9 @@ public class LoginModelImpl extends BaseModelImpl implements ILoginModel {
     int ret = -1;   //返回值
     LoginPresenterImpl presenter;
 
-    public LoginModelImpl(LoginActivity activity) {
+    public LoginModelImpl(LoginActivity activity,LoginPresenterImpl presenter) {
         this.activity = activity;
-        presenter = LoginPresenterImpl.getInstance(activity);
+        this.presenter = presenter;
     }
 
     //[{"createdAt":"2016-03-28 15:36:20","objectId":"8P2YNNNu","password":"123456","qq":"123456789","updatedAt":"2016-03-28 15:36:56","username":"abcdql520","yy":"987654321"}]

@@ -20,9 +20,9 @@ public class AccountInfoPubModelImpl implements IInfoPubModel {
     private AccountInfoPubActivity activity;
     private AccountInfoPubPresenterImpl presenter;
 
-    public AccountInfoPubModelImpl(AccountInfoPubActivity activity) {
+    public AccountInfoPubModelImpl(AccountInfoPubActivity activity,AccountInfoPubPresenterImpl presenter) {
         this.activity = activity;
-        presenter = AccountInfoPubPresenterImpl.getInstance(activity);
+        this.presenter = presenter;
     }
 
     @Override

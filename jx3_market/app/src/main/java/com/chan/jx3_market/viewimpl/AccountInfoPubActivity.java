@@ -51,7 +51,7 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = AccountInfoPubPresenterImpl.getInstance(this);
+        presenter = new AccountInfoPubPresenterImpl(this);
         initViews();
     }
 

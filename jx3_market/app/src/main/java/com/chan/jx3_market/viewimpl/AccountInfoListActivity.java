@@ -41,7 +41,7 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initViews();
-        presenter = AccountInfoListPresenterImpl.getInstance(this);
+        presenter = new AccountInfoListPresenterImpl(this);
         initData();
 
     }
@@ -54,7 +54,7 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
 
     public void initData(){
         presenter.initDataPool(0);
-        adapter = new AccountListAdapter(this);
+        adapter = new AccountListAdapter(this,mData);
         adapter.setOnClickListener(this);
         adapter.setOnFooterClickListener(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -94,7 +94,6 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
             mData.clear();
         }
         mData.addAll(list);
-        adapter.setData(list);
         adapter.notifyDataSetChanged();
     }
 

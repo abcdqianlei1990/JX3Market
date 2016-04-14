@@ -23,25 +23,15 @@ import rx.schedulers.Schedulers;
  */
 public class LoginPresenterImpl implements ILoginPresenter {
 
-    private static LoginActivity mLoginActivity;
-    private static LoginModelImpl loginModel;
-    private static volatile LoginPresenterImpl presenter;
+    private  LoginActivity activity;
+    private  LoginModelImpl model;
+    private  LoginPresenterImpl presenter;
 
-    private LoginPresenterImpl() {
+    public LoginPresenterImpl(LoginActivity activity) {
+        this.activity = activity;
+        model = new LoginModelImpl(activity,this);
     }
 
-    public static LoginPresenterImpl getInstance(LoginActivity mLoginView){
-        if(presenter == null){
-            synchronized(LoginPresenterImpl.class){
-                if(presenter == null){
-                    presenter = new LoginPresenterImpl();
-                    mLoginActivity = mLoginView;
-                    loginModel = new LoginModelImpl(mLoginActivity);
-                }
-            }
-        }
-        return presenter;
-    }
     @Override
     public void onCreate() {
         Log.d("chan","LoginPresenterImpl create");
@@ -83,17 +73,17 @@ public class LoginPresenterImpl implements ILoginPresenter {
 //            }
 //        });
 
-        loginModel.verifyUser(info);
+        model.verifyUser(info);
     }
 
     @Override
     public void onLoginSuccess(UserInfo info) {
-        mLoginActivity.onLoginSuccess(info);
+        activity.onLoginSuccess(info);
     }
 
     @Override
     public void onLoginFailure(int code) {
-        mLoginActivity.onLoginFailure(code);
+        activity.onLoginFailure(code);
     }
 
 }
