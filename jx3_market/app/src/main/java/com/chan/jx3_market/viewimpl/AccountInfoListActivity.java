@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.chan.jx3_market.R;
 import com.chan.jx3_market.bean.AccountEntity;
@@ -33,9 +34,12 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
     private AccountListAdapter adapter;
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    TextView mFooter;
 
     //数据偏移量
     private int mRecord = 0;
+
+    private long lastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,7 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
     }
 
     public void initData(){
-        presenter.initDataPool(0);
+        initDataPoolByPresenter(0);
         adapter = new AccountListAdapter(this,mData);
         adapter.setOnClickListener(this);
         adapter.setOnFooterClickListener(this);
@@ -63,7 +67,7 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
             @Override
             public void onRefresh() {
                 mRecord = 0;
-                presenter.initDataPool(mRecord);
+                initDataPoolByPresenter(mRecord);
             }
         });
     }
@@ -108,9 +112,25 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
     }
 
     @Override
-    public void onFooterViewClick() {
-//        Log.d("chan","footer is clicked...");
-        mRecord = mData.size();
-        presenter.initDataPool(mRecord);
+    public void onFooterViewClick(View v) {
+        Log.d("chan","footer is clicked..."+v.getId());
+        mFooter = (TextView) v.findViewById(R.id.footer);
+//        tv.setText("加载中。。。");
+        long currentTimeMillis = System.currentTimeMillis();
+        if(currentTimeMillis - lastClickTime > 500){
+            mRecord = mData.size();
+//            mFooter.setVisibility(View.GONE);
+//            mFooter.setClickable(false);
+            initDataPoolByPresenter(mRecord);
+//            mFooter.setVisibility(View.VISIBLE);
+//            mFooter.setClickable(true);
+        }
+        lastClickTime = currentTimeMillis;
+    }
+
+    public void initDataPoolByPresenter(int record){
+        mSwipeRefreshLayout.setRefreshing(true);
+        presenter.initDataPool(record);
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }
