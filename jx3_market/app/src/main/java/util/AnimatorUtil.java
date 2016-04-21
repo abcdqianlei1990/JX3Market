@@ -15,9 +15,9 @@ public class AnimatorUtil {
      */
     public static void performClickAnimator(Object target){
         ObjectAnimator animator1 = ObjectAnimator.
-                ofFloat(target, "scaleX", 1.0f, 0.7f);
+                ofFloat(target, "scaleX", 1.0f, 0.7f,1.0f);
         ObjectAnimator animator2 = ObjectAnimator.
-                ofFloat(target, "scaleX", 0.7f, 1.0f);
+                ofFloat(target, "scaleY", 1.0f, 0.7f,1.0f);
         AnimatorSet set = new AnimatorSet();
         set.play(animator1);
         set.play(animator2);
