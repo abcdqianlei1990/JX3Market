@@ -34,6 +34,9 @@ public class LoginModelImpl extends BaseModelImpl implements ILoginModel {
         this.presenter = presenter;
     }
 
+//    public LoginModelImpl(LoginActivity activity) {
+//        this.activity = activity;
+//    }
     //[{"createdAt":"2016-03-28 15:36:20","objectId":"8P2YNNNu","password":"123456","qq":"123456789","updatedAt":"2016-03-28 15:36:56","username":"abcdql520","yy":"987654321"}]
     @Override
     public void verifyUser(final UserInfo info) {
