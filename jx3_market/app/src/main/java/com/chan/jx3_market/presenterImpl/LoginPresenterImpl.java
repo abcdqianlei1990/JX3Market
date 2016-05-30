@@ -93,8 +93,8 @@ public class LoginPresenterImpl implements ILoginPresenter {
     }
 
     @Override
-    public void onLoginFailure(int code) {
-        mLoginActivity.onLoginFailure(code);
+    public void onLoginFailure() {
+        mLoginActivity.onLoginFailure();
     }
 
 }

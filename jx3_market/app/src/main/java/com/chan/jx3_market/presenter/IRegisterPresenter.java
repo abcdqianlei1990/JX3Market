@@ -15,4 +15,7 @@ public interface IRegisterPresenter {
      * @param code success 0        failure -1
      */
     public void handleCallBack(int code);
+
+    public void onRegisterSuccess();
+    public void onRegisterFailure(int code);
 }

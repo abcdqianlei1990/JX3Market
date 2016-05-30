@@ -24,6 +24,6 @@ public interface ILogin {
 
     public void onLoginSuccess(UserInfo info);
 
-    public void onLoginFailure(int code);
+    public void onLoginFailure();
 
 }

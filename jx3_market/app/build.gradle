@@ -3,6 +3,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
+    //**bmob-sdk:3.4.6版本依赖包，用于兼容Android6.0系统**
+//    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.chan.jx3_market"
@@ -31,4 +33,5 @@ dependencies {
     compile files('libs/BmobSDK_V3.4.5_1111.jar')
     compile files('libs/fastjson-1.1.43.android.jar')
     compile files('libs/BmobSDK_V3.4.6_0415.jar')
+//    compile 'cn.bmob.android:bmob-sdk:+'
 }

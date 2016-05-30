@@ -132,8 +132,8 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
     }
 
     @Override
-    public void onLoginFailure(int code) {
-        showToast(mSignInButton,"登录失败");
+    public void onLoginFailure() {
+        showToast(mSignInButton,"登录失败！用户名或密码错误！");
     }
 
     /**

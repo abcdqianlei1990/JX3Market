@@ -44,9 +44,19 @@ public class RegisterPresenterImpl implements IRegisterPresenter {
     @Override
     public void handleCallBack(int code) {
         if(0 == code){
-//            activity.showToast(activity,ToastMsg.REGISTER_SUCCESS);
+
         }else {
-//            activity.showToast(activity,ToastMsg.REGISTER_FAILURE);
+
         }
+    }
+
+    @Override
+    public void onRegisterSuccess() {
+        activity.onRegisterSuccess();
+    }
+
+    @Override
+    public void onRegisterFailure(int code) {
+        activity.onRegisterFailure(code);
     }
 }

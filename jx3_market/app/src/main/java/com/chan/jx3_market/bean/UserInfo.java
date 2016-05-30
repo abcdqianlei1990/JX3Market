@@ -9,31 +9,13 @@ import cn.bmob.v3.BmobObject;
  * Created by qianlei on 2016-03-28.14:45
  * class description:登录信息
  */
-public class UserInfo extends BmobObject implements Parcelable{
+public class UserInfo extends BmobObject{
 
     private String username;
     private String password;
     private String qq;
     private String yy;
 
-    protected UserInfo(Parcel in) {
-        username = in.readString();
-        password = in.readString();
-        qq = in.readString();
-        yy = in.readString();
-    }
-
-    public static final Creator<UserInfo> CREATOR = new Creator<UserInfo>() {
-        @Override
-        public UserInfo createFromParcel(Parcel in) {
-            return new UserInfo(in);
-        }
-
-        @Override
-        public UserInfo[] newArray(int size) {
-            return new UserInfo[size];
-        }
-    };
 
     public String getUsername() {
         return username;
@@ -68,35 +50,5 @@ public class UserInfo extends BmobObject implements Parcelable{
     }
 
     public UserInfo() {
-        this.setTableName("user_t");
-    }
-
-    public UserInfo(String username, String password, String qq, String yy) {
-        this.setTableName("user_t");
-        this.username = username;
-        this.password = password;
-        this.qq = qq;
-        this.yy = yy;
-    }
-
-    public UserInfo(String tableName, String username, String password, String qq, String yy) {
-        super(tableName);
-        this.username = username;
-        this.password = password;
-        this.qq = qq;
-        this.yy = yy;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(username);
-        dest.writeString(password);
-        dest.writeString(qq);
-        dest.writeString(yy);
     }
 }

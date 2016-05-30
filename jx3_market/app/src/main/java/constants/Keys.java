@@ -5,10 +5,12 @@ package constants;
  * class description:
  */
 public class Keys {
+
     public static final int LOGIN_SUCCESS = 0;
     public static final int USER_EXIST = 3;
     public static final int USER_NOT_EXIST = 1;
     public static final int NAME_OR_PWD_ERR = 2;
+    public static final int NORMAL = 4;
 
     //发布信息类型
     public static final int PUBLISH_INFO_TYPE_ACCOUNT = 0;

@@ -12,10 +12,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 import base.BaseModelImpl;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindCallback;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.GetListener;
 import constants.Keys;
 
 /**
@@ -25,8 +29,6 @@ import constants.Keys;
 public class LoginModelImpl extends BaseModelImpl implements ILoginModel {
 
     private LoginActivity activity;
-
-    int ret = -1;   //返回值
     LoginPresenterImpl presenter;
 
     public LoginModelImpl(LoginActivity activity,LoginPresenterImpl presenter) {
@@ -34,43 +36,27 @@ public class LoginModelImpl extends BaseModelImpl implements ILoginModel {
         this.presenter = presenter;
     }
 
-//    public LoginModelImpl(LoginActivity activity) {
-//        this.activity = activity;
-//    }
     //[{"createdAt":"2016-03-28 15:36:20","objectId":"8P2YNNNu","password":"123456","qq":"123456789","updatedAt":"2016-03-28 15:36:56","username":"abcdql520","yy":"987654321"}]
     @Override
     public void verifyUser(final UserInfo info) {
-        BmobQuery<UserInfo> query = new BmobQuery<UserInfo>(USER_TABLE_NAME);
+        BmobQuery<UserInfo> query = new BmobQuery<UserInfo>();
         query.addWhereEqualTo("username", info.getUsername());
-        query.findObjects(activity, new FindCallback() {
+        query.addWhereEqualTo("password", info.getPassword());
+        query.findObjects(activity, new FindListener<UserInfo>() {
             @Override
-            public void onSuccess(JSONArray jsonArray) {
-                Log.d("chan", "jsonArray ==>" + jsonArray.toString());
-                try {
-                    if (jsonArray.length() == 0) {
-//                        presenter.handleResult(Keys.USER_NOT_EXIST);
-                        presenter.onLoginFailure(Keys.USER_NOT_EXIST);
-                    } else {
-                        JSONObject jsonObject = jsonArray.getJSONObject(0);
-                        String password = jsonObject.getString("password");
-                        if (password.equals(info.getPassword())) {
-//                            presenter.handleResult(Keys.LOGIN_SUCCESS);
-                            presenter.onLoginSuccess(info);
-                        } else {
-                            ret = Keys.NAME_OR_PWD_ERR;
-//                            presenter.handleResult(Keys.NAME_OR_PWD_ERR);
-                            presenter.onLoginFailure(Keys.NAME_OR_PWD_ERR);
-                        }
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            public void onSuccess(List<UserInfo> list) {
+                Log.d("chan", "jsonArray ==>" + list.toString());
+                if(list.size() > 0){
+                    presenter.onLoginSuccess(list.get(0));
+                }else{
+                    presenter.onLoginFailure();
                 }
             }
 
             @Override
-            public void onFailure(int i, String s) {
+            public void onError(int i, String s) {
                 Log.d("chan", "failure ==>" + s);
+                presenter.onLoginFailure();
             }
         });
     }

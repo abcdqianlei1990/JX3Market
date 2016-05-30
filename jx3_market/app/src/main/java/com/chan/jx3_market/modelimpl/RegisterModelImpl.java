@@ -38,7 +38,7 @@ public class RegisterModelImpl extends BaseModelImpl implements IRegisterModel {
 
     @Override
     public void verifyUser(final UserInfo info) {
-        final BmobQuery<UserInfo> query = new BmobQuery<UserInfo>(USER_TABLE_NAME);
+        final BmobQuery<UserInfo> query = new BmobQuery<UserInfo>("UserInfo");
         query.addWhereEqualTo("username", info.getUsername());
         query.findObjects(activity, new FindCallback() {
             @Override
@@ -49,23 +49,24 @@ public class RegisterModelImpl extends BaseModelImpl implements IRegisterModel {
                     info.save(activity, new SaveListener() {
                         @Override
                         public void onSuccess() {
-                            presenter.handleCallBack(0);
+                            presenter.onRegisterSuccess();
                         }
 
                         @Override
                         public void onFailure(int i, String s) {
-                            presenter.handleCallBack(-1);
+                            presenter.onRegisterFailure(Keys.NORMAL);
                         }
                     });
                 } else {
                     ret = Keys.USER_EXIST;
-                    presenter.handleRet(ret);
+                    presenter.onRegisterFailure(ret);
                 }
             }
 
             @Override
             public void onFailure(int i, String s) {
                 Log.d("chan", "failure ==>" + s);
+                presenter.onRegisterFailure(Keys.NORMAL);
             }
         });
 

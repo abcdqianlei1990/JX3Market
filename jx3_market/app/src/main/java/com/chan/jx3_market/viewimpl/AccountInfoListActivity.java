@@ -66,6 +66,7 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                Log.d("chan","AccountInfoListActivity ==>  recycler view on refresh ...");
                 mRecord = 0;
                 initDataPoolByPresenter(mRecord);
             }

@@ -58,11 +58,11 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if(holder instanceof AccountListViewHolder) {
             AccountListViewHolder h = (AccountListViewHolder) holder;
             AccountInfo info = data.get(position);
-            h.profession.setText(info.getProfession());
+            h.profession.setText("门派："+info.getProfession());
             h.pvporpve.setText(info.getPvpOrPve());
-            h.score.setText(info.getScore());
-            h.expScore.setText(info.getExpScore());
-            h.bodyType.setText(info.getBodyType());
+            h.score.setText("装分："+info.getScore());
+            h.expScore.setText("资历："+info.getExpScore());
+            h.bodyType.setText("体型："+info.getBodyType());
             //限量
             if (TextUtils.isEmpty(info.getLimit())) {
                 h.limit.setVisibility(View.GONE);
