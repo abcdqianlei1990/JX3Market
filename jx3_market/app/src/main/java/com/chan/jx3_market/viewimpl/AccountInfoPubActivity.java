@@ -115,7 +115,7 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
 
     public AccountInfo packageInputInfo(){
         AccountInfo info = new AccountInfo();
-        info.setUsername(app.getInfo().getUsername());
+        info.setUsername(app.getUserInfo().getUsername());
         info.setProfession(mProfession.getText().toString().trim());
         info.setBodyType(mBodyType.getText().toString().trim());
         info.setPvpOrPve(mPvpOrPve.getText().toString().trim());

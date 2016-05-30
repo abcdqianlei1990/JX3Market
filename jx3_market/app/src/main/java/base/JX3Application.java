@@ -10,7 +10,7 @@ import com.chan.jx3_market.bean.UserInfo;
  */
 public class JX3Application extends Application {
 
-    private UserInfo info;
+    private UserInfo userInfo;
     private static JX3Application app;
 
     public JX3Application() {
@@ -32,11 +32,11 @@ public class JX3Application extends Application {
         super.onCreate();
     }
 
-    public UserInfo getInfo() {
-        return info;
+    public UserInfo getUserInfo() {
+        return userInfo;
     }
 
-    public void setInfo(UserInfo info) {
-        this.info = info;
+    public void setInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 }

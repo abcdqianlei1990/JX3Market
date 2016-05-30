@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -20,6 +21,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.chan.jx3_market.R;
 import com.chan.jx3_market.presenter.IMainPresenter;
@@ -45,6 +47,7 @@ public class MainActivity extends BaseActivity implements IMainActivity,View.OnC
     private FloatingActionButton mFab;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
+    private TextView mHeaderTv;
 
     private IMainPresenter mPresenter;
 
@@ -60,6 +63,8 @@ public class MainActivity extends BaseActivity implements IMainActivity,View.OnC
     private static final int ACTION_CODE_SEARCH = 0;
     private static final int ACTION_CODE_PUB = 1;
 
+    private String mUserName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +75,7 @@ public class MainActivity extends BaseActivity implements IMainActivity,View.OnC
 
         initVies();
         mExplosionField = ExplosionField.attach2Window(this);
-
+        setViews();
     }
 
     public void initVies(){
@@ -90,21 +95,27 @@ public class MainActivity extends BaseActivity implements IMainActivity,View.OnC
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.navigation_item_one:
-                        Log.d("qianlei", "===>navigation_item_one");
+                        Log.d("chan", "===>navigation_item_one");
                         item.setChecked(true);
                         break;
                     case R.id.navigation_item_two:
-                        Log.d("qianlei", "===>navigation_item_two");
+                        Log.d("chan", "===>navigation_item_two");
                         item.setChecked(true);
                         break;
                     case R.id.navigation_item_three:
-                        Log.d("qianlei", "===>navigation_item_three");
+                        Log.d("chan", "===>navigation_item_three");
                         item.setChecked(true);
+                        break;
+                    case R.id.navigation_item_four:
+                        Log.d("chan", "===>navigation_item_four");
+                        System.exit(0);
                         break;
                 }
                 return false;
             }
         });
+        View header = mNavigationView.getHeaderView(0);
+        mHeaderTv = (TextView) header.findViewById(R.id.header_tv);
 
         mSearchAll.setOnClickListener(this);
         mPublish.setOnClickListener(this);
@@ -116,7 +127,9 @@ public class MainActivity extends BaseActivity implements IMainActivity,View.OnC
 
     }
 
-
+    public void setViews(){
+        mHeaderTv.setText(app.getUserInfo().getUsername());
+    }
 
     public static void jumpToMainActivity(Activity ac){
         Intent intent = new Intent(ac,MainActivity.class);

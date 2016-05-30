@@ -17,6 +17,11 @@
             android:icon="@mipmap/ic_launcher"
             android:checkable="true"
             android:title="我的订单"></item>
+        <item
+            android:id="@+id/navigation_item_four"
+            android:icon="@mipmap/ic_launcher"
+            android:checkable="true"
+            android:title="退出"></item>
     </group>
     <!--<item android:title="Sub items"-->
         <!-->-->

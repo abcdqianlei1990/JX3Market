@@ -20,7 +20,7 @@ import util.AnimatorUtil;
 
 /**
  * Created by qianlei on 2016-03-28.18:07
- * class description:
+ * class description:注册界面
  */
 public class RegisterActivity extends BaseActivity implements IRegister,View.OnClickListener{
 

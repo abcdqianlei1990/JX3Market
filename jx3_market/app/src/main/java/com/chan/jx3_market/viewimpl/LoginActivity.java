@@ -129,6 +129,7 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
         i.setPassword(mPasswordView.getText().toString().trim());
         app.setInfo(i);
         MainActivity.jumpToMainActivity(this);
+        finish();
     }
 
     @Override
