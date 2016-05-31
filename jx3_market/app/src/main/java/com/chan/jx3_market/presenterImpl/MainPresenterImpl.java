@@ -32,7 +32,7 @@ public class MainPresenterImpl implements IMainPresenter {
         switch (type){
             case Keys.PUBLISH_INFO_TYPE_ACCOUNT:
                 break;
-            case Keys.PUBLISH_INFO_TYPE_MONEY:
+            case Keys.PUBLISH_INFO_TYPE_GOLD:
                 break;
             case Keys.PUBLISH_INFO_TYPE_SERVICE:
                 break;

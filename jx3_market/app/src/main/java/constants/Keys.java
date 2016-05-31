@@ -14,7 +14,7 @@ public class Keys {
 
     //发布信息类型
     public static final int PUBLISH_INFO_TYPE_ACCOUNT = 0;
-    public static final int PUBLISH_INFO_TYPE_MONEY = 1;
+    public static final int PUBLISH_INFO_TYPE_GOLD = 1;
     public static final int PUBLISH_INFO_TYPE_SERVICE = 2;
     public static final int PUBLISH_INFO_TYPE_OTHER = 3;
 

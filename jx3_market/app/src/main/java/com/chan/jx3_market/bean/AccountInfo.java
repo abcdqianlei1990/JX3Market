@@ -99,42 +99,6 @@ public class AccountInfo extends BmobObject{
      */
     private String other;
 
-//    public AccountInfo() {
-//        this.setTableName("account_t");
-//    }
-
-//    protected AccountInfo(Parcel in) {
-//        username = in.readString();
-//        infoType = in.readInt();
-//        profession = in.readString();
-//        bodyType = in.readString();
-//        pvpOrPve = in.readString();
-//        score = in.readString();
-//        expScore = in.readString();
-//        limit = in.readString();
-//        hair = in.readString();
-//        mount = in.readString();
-//        face = in.readString();
-//        pet = in.readString();
-//        clothes = in.readString();
-//        zhanjie = in.readString();
-//        jjcLv = in.readString();
-//        calling = in.readString();
-//        other = in.readString();
-//    }
-
-//    public static final Creator<AccountInfo> CREATOR = new Creator<AccountInfo>() {
-//        @Override
-//        public AccountInfo createFromParcel(Parcel in) {
-//            return new AccountInfo(in);
-//        }
-//
-//        @Override
-//        public AccountInfo[] newArray(int size) {
-//            return new AccountInfo[size];
-//        }
-//    };
-
     public String getUsername() {
         return username;
     }
@@ -270,31 +234,4 @@ public class AccountInfo extends BmobObject{
     public void setOther(String other) {
         this.other = other;
     }
-
-
-//    @Override
-//    public int describeContents() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public void writeToParcel(Parcel dest, int flags) {
-//        dest.writeString(username);
-//        dest.writeInt(infoType);
-//        dest.writeString(profession);
-//        dest.writeString(bodyType);
-//        dest.writeString(pvpOrPve);
-//        dest.writeString(score);
-//        dest.writeString(expScore);
-//        dest.writeString(limit);
-//        dest.writeString(hair);
-//        dest.writeString(mount);
-//        dest.writeString(face);
-//        dest.writeString(pet);
-//        dest.writeString(clothes);
-//        dest.writeString(zhanjie);
-//        dest.writeString(jjcLv);
-//        dest.writeString(calling);
-//        dest.writeString(other);
-//    }
 }

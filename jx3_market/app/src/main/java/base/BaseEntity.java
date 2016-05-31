@@ -9,7 +9,21 @@ import java.util.ArrayList;
  * class description:
  */
 public class BaseEntity<T> {
+
+    private int total;
+
     private ArrayList<T> list;
+
+    public BaseEntity() {
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
 
     public ArrayList<T> getList() {
         return list;

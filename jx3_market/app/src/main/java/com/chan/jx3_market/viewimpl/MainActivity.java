@@ -212,7 +212,8 @@ public class MainActivity extends BaseActivity implements IMainActivity,View.OnC
                         }
                         break;
                     case R.id.pub_type_select_dialog_money:
-                        showToast(mPublish,"跳转到金币发布页面");
+//                        showToast(mPublish,"跳转到金币发布页面");
+                        GoldInfoPubActivity.jumpToThisPage(MainActivity.this);
                         break;
                     case R.id.pub_type_select_dialog_service:
                         showToast(mPublish,"跳转到代练代打发布页面");

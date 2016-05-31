@@ -370,6 +370,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="确认提交"
+                    android:padding="5dp"
                     android:textColor="@android:color/holo_red_light"
                     android:textSize="20dp" />
             </android.support.v7.widget.CardView>

@@ -1,11 +1,8 @@
 package base;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -43,7 +40,10 @@ public class BaseActivity extends AppCompatActivity {
      */
     private void showToast(View view,String toastMsg, int duration) {
 //        Toast.makeText(this, toastMsg, duration).show();
-        Snackbar.make(view,toastMsg,duration).show();
+        Snackbar snackbar = Snackbar.make(view, toastMsg, duration);
+        View v = snackbar.getView();
+        v.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        snackbar.show();
     }
 
 }

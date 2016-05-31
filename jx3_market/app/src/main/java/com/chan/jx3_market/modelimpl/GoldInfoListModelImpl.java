@@ -2,7 +2,6 @@ package com.chan.jx3_market.modelimpl;
 
 import android.util.Log;
 
-import com.alibaba.fastjson.JSON;
 import com.chan.jx3_market.bean.AccountEntity;
 import com.chan.jx3_market.bean.AccountInfo;
 import com.chan.jx3_market.model.IAccountInfoListModel;
@@ -12,28 +11,24 @@ import com.chan.jx3_market.viewimpl.AccountInfoListActivity;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import base.BaseEntity;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.CountListener;
 import cn.bmob.v3.listener.FindCallback;
 import cn.bmob.v3.listener.SQLQueryListener;
-import constants.Keys;
 import util.JsonUtil;
 
 /**
  * Created by qianlei on 2016-04-05.15:23
  * class description:
  */
-public class AccountInfoListModelImpl implements IAccountInfoListModel {
+public class GoldInfoListModelImpl implements IAccountInfoListModel {
 
     private AccountInfoListActivity activity;
     private AccountInfoListPresenterImpl presenter;
 
-    public AccountInfoListModelImpl(AccountInfoListActivity activity,AccountInfoListPresenterImpl presenter) {
+    public GoldInfoListModelImpl(AccountInfoListActivity activity, AccountInfoListPresenterImpl presenter) {
         this.activity = activity;
         this.presenter = presenter;
     }
