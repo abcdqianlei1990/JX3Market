@@ -41,6 +41,21 @@ public class GoldInfo extends BmobObject {
      */
     private boolean supportLittleDeal;
 
+    /**
+     * 发布者的联系qq
+     */
+    private String qq;
+
+    /**
+     * 发布者的联系yy
+     */
+    private String yy;
+
+    /**
+     * 发布者的联系phone
+     */
+    private String phone;
+
     public GoldInfo() {
         this.setTableName("gold_t");
     }
@@ -91,5 +106,29 @@ public class GoldInfo extends BmobObject {
 
     public void setSupportLittleDeal(boolean supportLittleDeal) {
         this.supportLittleDeal = supportLittleDeal;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getYy() {
+        return yy;
+    }
+
+    public void setYy(String yy) {
+        this.yy = yy;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

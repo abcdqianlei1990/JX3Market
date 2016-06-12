@@ -15,7 +15,10 @@ public class UserInfo extends BmobObject{
     private String password;
     private String qq;
     private String yy;
+    private String phone;
 
+    public UserInfo() {
+    }
 
     public String getUsername() {
         return username;
@@ -49,6 +52,11 @@ public class UserInfo extends BmobObject{
         this.yy = yy;
     }
 
-    public UserInfo() {
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

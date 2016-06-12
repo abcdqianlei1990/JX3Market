@@ -9,6 +9,7 @@ public interface IRegister {
     public String getPassword();
     public String getQQ();
     public String getYY();
+    public String getPhone();
     public void onRegisterSuccess();
     public void onRegisterFailure(int code);
 }

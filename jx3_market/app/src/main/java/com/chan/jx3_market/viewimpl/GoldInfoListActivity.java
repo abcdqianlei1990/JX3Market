@@ -3,10 +3,19 @@ package com.chan.jx3_market.viewimpl;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.chan.jx3_market.R;
 import com.chan.jx3_market.bean.GoldInfo;
@@ -15,20 +24,24 @@ import com.chan.jx3_market.view.BaseActivityInterface;
 
 import java.util.ArrayList;
 
+import adapter.GoldListAdapter;
 import base.BaseActivity;
 import base.BaseEntity;
 
 /**
  * Created by ex-qianlei349 on 2016-06-02.
  */
-public class GoldInfoListActivity extends BaseActivity implements BaseActivityInterface {
+public class GoldInfoListActivity extends BaseActivity implements BaseActivityInterface,BaseActivity.RecyclerViewItemClickListener{
 
     private Toolbar mToolBar;
+    private RecyclerView mRecyclerView;
 
     private ArrayList<GoldInfo> mDataList = new ArrayList<GoldInfo>();
     private GoldInfoListPresenterImpl presenter;
     private int mRecord = 0;
     private int mTotal = 0;
+    private GoldListAdapter mAdapter;
+
     private Toolbar.OnMenuItemClickListener onMenuItemClickListener = new Toolbar.OnMenuItemClickListener() {
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
@@ -55,8 +68,8 @@ public class GoldInfoListActivity extends BaseActivity implements BaseActivityIn
 
     public void initViews(){
         setContentView(R.layout.activity_goldinfo_list);
+        mRecyclerView = (RecyclerView) findViewById(R.id.actity_goldinfo_list);
         initToolBar();
-
 
     }
 
@@ -64,8 +77,7 @@ public class GoldInfoListActivity extends BaseActivity implements BaseActivityIn
         mToolBar = (Toolbar) findViewById(R.id.actity_goldinfo_toolbar);
         mToolBar.setTitle("金币信息列表");
         mToolBar.setTitleTextColor(getResources().getColor(R.color.cardview_light_background));
-        mToolBar.inflateMenu(R.menu.goldinfo_menu);
-
+//        setSupportActionBar(mToolBar);
         mToolBar.setNavigationIcon(R.mipmap.ic_launcher);
         mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,11 +85,17 @@ public class GoldInfoListActivity extends BaseActivity implements BaseActivityIn
                 finish();
             }
         });
-
         mToolBar.setOnMenuItemClickListener(onMenuItemClickListener);
+        mToolBar.inflateMenu(R.menu.goldinfo_menu);
+
+
     }
 
     public void initParams(){
+        mAdapter = new GoldListAdapter(this,mDataList);
+        mAdapter.setOnItemClickListener(this);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         presenter = new GoldInfoListPresenterImpl(this);
     }
 
@@ -92,22 +110,59 @@ public class GoldInfoListActivity extends BaseActivity implements BaseActivityIn
 
     @Override
     public void onDataGetSuccess(BaseEntity entity) {
-        mDataList = entity.getList();
+        if(mRecord == 0){
+            if(mDataList != null){
+                mDataList.clear();
+            }
+        }
+        mDataList.addAll(entity.getList());
         mTotal = entity.getTotal();
+
+        refreshListView();
     }
 
     @Override
     public void onDataGetFailure(int code, String s) {
-//        showToast();
+        showToast(mRecyclerView,s);
+    }
+
+    public void refreshListView(){
+        Log.d("chan","@@@@@@@refreshListView");
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
-    }
+    public void onItemClick(View v,int position) {
+        Log.d("chan","@@@@@@@onItemClick");
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_connection,null);
+        TextView qq = (TextView) view.findViewById(R.id.dialog_connection_qq);
+        TextView yy = (TextView) view.findViewById(R.id.dialog_connection_yy);
+        TextView phone = (TextView) view.findViewById(R.id.dialog_connection_phone);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+        GoldInfo info = mDataList.get(position);
+
+        if(TextUtils.isEmpty(info.getQq())){
+            qq.setVisibility(View.GONE);
+        }else{
+            qq.setVisibility(View.VISIBLE);
+            qq.setText("QQ:"+info.getQq());
+        }
+        if(TextUtils.isEmpty(info.getYy())){
+            yy.setVisibility(View.GONE);
+        }else{
+            yy.setVisibility(View.VISIBLE);
+            yy.setText("YY:"+info.getYy());
+        }
+        if(TextUtils.isEmpty(info.getPhone())){
+            phone.setVisibility(View.GONE);
+        }else{
+            phone.setVisibility(View.VISIBLE);
+            phone.setText("电话:"+info.getPhone());
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setView(view);
+        builder.create().show();
     }
 }

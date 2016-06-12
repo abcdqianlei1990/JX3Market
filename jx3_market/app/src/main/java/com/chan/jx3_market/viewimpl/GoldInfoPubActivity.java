@@ -112,6 +112,11 @@ public class GoldInfoPubActivity extends BaseActivity implements GoldInfoPubActi
             info.setProportion(proportion);
             info.setSupportLittleDeal(mSupportLittleDeal);
             info.setUsername(app.getUserInfo().getUsername());
+            //插入发布者的联系方式
+            info.setQq(app.getUserInfo().getQq());
+            info.setYy(app.getUserInfo().getYy());
+            info.setPhone(app.getUserInfo().getPhone());
+
             presenter.performSubmitClickEvent(info);
         }
     }

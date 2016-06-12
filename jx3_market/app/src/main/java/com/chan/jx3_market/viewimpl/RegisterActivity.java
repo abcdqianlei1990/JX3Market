@@ -28,6 +28,7 @@ public class RegisterActivity extends BaseActivity implements IRegister,View.OnC
     private TextInputEditText mPasswordEd;
     private TextInputEditText mQQEd;
     private TextInputEditText mYYEd;
+    private TextInputEditText mPhoneEd;
     private Button mRegisterBtn;
 
     private RegisterPresenterImpl presenter;
@@ -45,6 +46,7 @@ public class RegisterActivity extends BaseActivity implements IRegister,View.OnC
         mPasswordEd = (TextInputEditText) findViewById(R.id.register_pwd);
         mQQEd = (TextInputEditText) findViewById(R.id.register_qq);
         mYYEd = (TextInputEditText) findViewById(R.id.register_yy);
+        mPhoneEd = (TextInputEditText) findViewById(R.id.register_phone);
         mRegisterBtn = (Button) findViewById(R.id.register_sign_up);
 
         mRegisterBtn.setOnClickListener(this);
@@ -80,6 +82,10 @@ public class RegisterActivity extends BaseActivity implements IRegister,View.OnC
         return mYYEd.getText().toString().trim();
     }
 
+    public String getPhone() {
+        return mPhoneEd.getText().toString().trim();
+    }
+
     @Override
     public void onRegisterSuccess() {
         showToast(mRegisterBtn,"注册成功，您可以使用该账户登录！");
@@ -108,13 +114,15 @@ public class RegisterActivity extends BaseActivity implements IRegister,View.OnC
             String pwd = getPassword();
             String qq = getQQ();
             String yy = getYY();
+            String phone = getPhone();
 
-            if(!TextUtils.isEmpty(username) && !TextUtils.isEmpty(pwd) && (!TextUtils.isEmpty(qq) || !TextUtils.isEmpty(yy))){
+            if(!TextUtils.isEmpty(username) && !TextUtils.isEmpty(pwd) && (!TextUtils.isEmpty(qq) || !TextUtils.isEmpty(yy)) || !TextUtils.isEmpty(phone)){
                 UserInfo info = new UserInfo();
                 info.setUsername(username);
                 info.setPassword(pwd);
                 info.setQq(qq);
                 info.setYy(yy);
+                info.setYy(phone);
                 presenter.register(info);
             }else{
                 showToast(mRegisterBtn,ToastMsg.REGISTER_BUTTON_CLICK_NOTE);

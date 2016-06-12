@@ -46,4 +46,8 @@ public class BaseActivity extends AppCompatActivity {
         snackbar.show();
     }
 
+    public interface RecyclerViewItemClickListener{
+        public void onItemClick(View v,int position);
+    }
+
 }
