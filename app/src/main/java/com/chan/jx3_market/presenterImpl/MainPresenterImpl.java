@@ -1,12 +1,10 @@
 package com.chan.jx3_market.presenterImpl;
 
-import android.support.v7.app.AlertDialog;
-
 import com.chan.jx3_market.modelimpl.MainModelImpl;
 import com.chan.jx3_market.presenter.IMainPresenter;
 import com.chan.jx3_market.viewimpl.MainActivity;
 
-import constants.Keys;
+import com.chan.jx3_market.constants.Constants;
 
 /**
  * Created by qianlei on 2016-03-31.14:01
@@ -30,13 +28,13 @@ public class MainPresenterImpl implements IMainPresenter {
     @Override
     public void performSearchAllClickEvent(int type) {
         switch (type){
-            case Keys.PUBLISH_INFO_TYPE_ACCOUNT:
+            case Constants.PUBLISH_INFO_TYPE_ACCOUNT:
                 break;
-            case Keys.PUBLISH_INFO_TYPE_GOLD:
+            case Constants.PUBLISH_INFO_TYPE_GOLD:
                 break;
-            case Keys.PUBLISH_INFO_TYPE_SERVICE:
+            case Constants.PUBLISH_INFO_TYPE_SERVICE:
                 break;
-            case Keys.PUBLISH_INFO_TYPE_OTHER:
+            case Constants.PUBLISH_INFO_TYPE_OTHER:
                 break;
         }
     }

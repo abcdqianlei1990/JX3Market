@@ -7,7 +7,7 @@ import com.chan.jx3_market.modelimpl.RegisterModelImpl;
 import com.chan.jx3_market.presenter.IRegisterPresenter;
 import com.chan.jx3_market.viewimpl.RegisterActivity;
 
-import constants.ToastMsg;
+import com.chan.jx3_market.constants.ToastMsg;
 
 /**
  * Created by qianlei on 2016-03-28.19:37

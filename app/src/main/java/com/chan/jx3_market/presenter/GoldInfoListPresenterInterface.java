@@ -1,12 +1,6 @@
 package com.chan.jx3_market.presenter;
 
-import com.chan.jx3_market.bean.AccountEntity;
-import com.chan.jx3_market.bean.AccountInfo;
-import com.chan.jx3_market.bean.GoldInfo;
-
-import java.util.ArrayList;
-
-import base.BaseEntity;
+import com.chan.jx3_market.base.BaseEntity;
 
 /**
  * Created by qianlei on 2016-04-05.15:15

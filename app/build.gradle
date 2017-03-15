@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'android-apt'
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion '25.0.0'
     //**bmob-sdk:3.4.6版本依赖包，用于兼容Android6.0系统**
 //    useLibrary 'org.apache.http.legacy'
 
@@ -30,8 +30,11 @@ dependencies {
     compile 'tyrantgit:explosionfield:1.0.1'
     compile 'io.reactivex:rxjava:1.0.14'
     compile 'io.reactivex:rxandroid:1.0.1'
-    compile files('libs/BmobSDK_V3.4.5_1111.jar')
     compile files('libs/fastjson-1.1.43.android.jar')
     compile files('libs/BmobSDK_V3.4.6_0415.jar')
 //    compile 'cn.bmob.android:bmob-sdk:+'
+    compile 'com.github.ybq:Android-SpinKit:1.1.0'
+    //butter knife
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
 }

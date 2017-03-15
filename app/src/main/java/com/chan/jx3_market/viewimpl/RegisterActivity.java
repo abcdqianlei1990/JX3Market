@@ -13,10 +13,10 @@ import com.chan.jx3_market.bean.UserInfo;
 import com.chan.jx3_market.presenterImpl.RegisterPresenterImpl;
 import com.chan.jx3_market.view.IRegister;
 
-import base.BaseActivity;
-import constants.Keys;
-import constants.ToastMsg;
-import util.AnimatorUtil;
+import com.chan.jx3_market.base.BaseActivity;
+import com.chan.jx3_market.constants.Constants;
+import com.chan.jx3_market.constants.ToastMsg;
+import com.chan.jx3_market.util.AnimatorUtil;
 
 /**
  * Created by qianlei on 2016-03-28.18:07
@@ -94,10 +94,10 @@ public class RegisterActivity extends BaseActivity implements IRegister,View.OnC
     @Override
     public void onRegisterFailure(int code) {
         switch (code){
-            case Keys.NORMAL:
+            case Constants.NORMAL:
                 showToast(mRegisterBtn,"注册失败！");
                 break;
-            case Keys.USER_EXIST:
+            case Constants.USER_EXIST:
                 showToast(mRegisterBtn,"该用户已经存在！");
                 break;
         }

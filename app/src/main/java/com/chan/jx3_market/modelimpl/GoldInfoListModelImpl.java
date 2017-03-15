@@ -2,29 +2,18 @@ package com.chan.jx3_market.modelimpl;
 
 import android.util.Log;
 
-import com.chan.jx3_market.bean.AccountEntity;
-import com.chan.jx3_market.bean.AccountInfo;
 import com.chan.jx3_market.bean.GoldInfo;
 import com.chan.jx3_market.model.GoldInfoListModelInterface;
-import com.chan.jx3_market.model.IAccountInfoListModel;
-import com.chan.jx3_market.presenterImpl.AccountInfoListPresenterImpl;
 import com.chan.jx3_market.presenterImpl.GoldInfoListPresenterImpl;
-import com.chan.jx3_market.viewimpl.AccountInfoListActivity;
 import com.chan.jx3_market.viewimpl.GoldInfoListActivity;
 
 import org.json.JSONArray;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import base.BaseEntity;
+import com.chan.jx3_market.base.BaseEntity;
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.datatype.BmobQueryResult;
-import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindCallback;
-import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SQLQueryListener;
-import util.JsonUtil;
+
+import com.chan.jx3_market.util.JsonUtil;
 
 /**
  * Created by qianlei on 2016-04-05.15:23

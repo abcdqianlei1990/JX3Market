@@ -15,7 +15,7 @@ public class GoldInfo extends BmobObject {
 
     /**
      * 发布信息类型
-     * @link Keys.PUBLISH_INFO_TYPE_GOLD;
+     * @link Constants.PUBLISH_INFO_TYPE_GOLD;
      */
     private Integer infoType;
 

@@ -3,8 +3,6 @@ package com.chan.jx3_market.viewimpl;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -24,9 +21,9 @@ import com.chan.jx3_market.view.BaseActivityInterface;
 
 import java.util.ArrayList;
 
-import adapter.GoldListAdapter;
-import base.BaseActivity;
-import base.BaseEntity;
+import com.chan.jx3_market.adapter.GoldListAdapter;
+import com.chan.jx3_market.base.BaseActivity;
+import com.chan.jx3_market.base.BaseEntity;
 
 /**
  * Created by ex-qianlei349 on 2016-06-02.

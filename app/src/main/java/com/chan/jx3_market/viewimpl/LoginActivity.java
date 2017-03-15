@@ -1,6 +1,5 @@
 package com.chan.jx3_market.viewimpl;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,14 +13,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.chan.jx3_market.R;
+import com.chan.jx3_market.base.BaseActivity;
 import com.chan.jx3_market.bean.UserInfo;
 import com.chan.jx3_market.presenter.ILoginPresenter;
 import com.chan.jx3_market.presenterImpl.LoginPresenterImpl;
+import com.chan.jx3_market.util.AnimatorUtil;
 import com.chan.jx3_market.view.ILogin;
 
-import base.BaseActivity;
 import cn.bmob.v3.Bmob;
-import util.AnimatorUtil;
 
 
 /**
@@ -70,10 +69,8 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
 
         mSignInButton = (Button) findViewById(R.id.login_sign_in_button);
         mRegisterButton = (TextView) findViewById(R.id.login_register);
-
         mSignInButton.setOnClickListener(this);
-        mRegisterButton.setOnClickListener(this);
-    }
+        mRegisterButton.setOnClickListener(this);}
 
 
     @Override
@@ -109,6 +106,7 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
                 Log.d("chan", "LOGIN BUTTON IS CLICKED...");
                 AnimatorUtil.performClickAnimator(mSignInButton);
                 if(inputOK()){
+                    showLoadingDialog();
                     UserInfo info = new UserInfo();
                     info.setUsername(mUserNameEd.getText().toString().trim());
                     info.setPassword(mPasswordView.getText().toString().trim());
@@ -124,6 +122,7 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
 
     @Override
     public void onLoginSuccess(UserInfo info) {
+        dismissLoadingDialog();
         UserInfo i = new UserInfo();
         i.setUsername(mUserNameEd.getText().toString().trim());
         i.setPassword(mPasswordView.getText().toString().trim());
@@ -137,6 +136,7 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
 
     @Override
     public void onLoginFailure() {
+        dismissLoadingDialog();
         showToast(mSignInButton,"登录失败！用户名或密码错误！");
     }
 

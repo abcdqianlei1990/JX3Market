@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.chan.jx3_market.R;
@@ -18,9 +17,9 @@ import com.chan.jx3_market.presenterImpl.AccountInfoPubPresenterImpl;
 import com.chan.jx3_market.view.IAccountInfoPubActivity;
 
 
-import base.BaseActivity;
-import constants.Keys;
-import util.AnimatorUtil;
+import com.chan.jx3_market.base.BaseActivity;
+import com.chan.jx3_market.constants.Constants;
+import com.chan.jx3_market.util.AnimatorUtil;
 
 /**
  * Created by qianlei on 2016-04-01.11:05
@@ -131,7 +130,7 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
         info.setJjcLv(mJJCLv.getText().toString().trim());
         info.setCalling(mCalling.getText().toString().trim());
         info.setOther(mOther.getText().toString().trim());
-        info.setInfoType(Keys.PUBLISH_INFO_TYPE_ACCOUNT);
+        info.setInfoType(Constants.PUBLISH_INFO_TYPE_ACCOUNT);
         return info;
     }
 

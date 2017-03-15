@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/titleColor"
+    android:id="@+id/title">
+    <LinearLayout
+        android:id="@+id/title_arrow"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/back"
+            android:textSize="@dimen/sp_18"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="19dp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/title_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Market"
+        android:textColor="@color/white"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/sp_18"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/title_right_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:text="下一步"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_16"
+        android:layout_marginRight="19dp"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/title_share_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:textColor="@color/white"
+        android:layout_marginRight="19dp"
+        android:visibility="gone"
+        />
+</RelativeLayout>

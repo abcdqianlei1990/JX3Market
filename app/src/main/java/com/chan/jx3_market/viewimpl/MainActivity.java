@@ -1,7 +1,5 @@
 package com.chan.jx3_market.viewimpl;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.SearchView;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -28,10 +25,10 @@ import com.chan.jx3_market.presenter.IMainPresenter;
 import com.chan.jx3_market.presenterImpl.MainPresenterImpl;
 import com.chan.jx3_market.view.IMainActivity;
 
-import base.BaseActivity;
-import constants.Keys;
+import com.chan.jx3_market.base.BaseActivity;
+
 import tyrantgit.explosionfield.ExplosionField;
-import util.AnimatorUtil;
+import com.chan.jx3_market.util.AnimatorUtil;
 
 /**
  * Created by qianlei on 2016-03-30.11:47
@@ -79,7 +76,7 @@ public class MainActivity extends BaseActivity implements IMainActivity,View.OnC
     }
 
     public void initVies(){
-        setContentView(R.layout.activity_main);
+        addContentView(R.layout.activity_main);
         mSearchView = (SearchView) findViewById(R.id.main_search);
         mSearchAll = (CardView) findViewById(R.id.main_search_all);
         mPublish= (CardView) findViewById(R.id.main_publish);
@@ -207,7 +204,7 @@ public class MainActivity extends BaseActivity implements IMainActivity,View.OnC
                         if(ACTION_CODE_PUB == action){
                             AccountInfoPubActivity.jumpToThisActivity(MainActivity.this);
                         }else{
-//                            mPresenter.performSearchAllClickEvent(Keys.PUBLISH_INFO_TYPE_ACCOUNT);
+//                            mPresenter.performSearchAllClickEvent(Constants.PUBLISH_INFO_TYPE_ACCOUNT);
                             AccountInfoListActivity.jumpToThisActivity(MainActivity.this);
                         }
                         break;

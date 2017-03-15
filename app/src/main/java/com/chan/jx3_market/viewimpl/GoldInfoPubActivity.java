@@ -4,21 +4,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.chan.jx3_market.R;
 import com.chan.jx3_market.bean.GoldInfo;
 import com.chan.jx3_market.presenterImpl.GoldInfoPubPresenterImpl;
 import com.chan.jx3_market.view.GoldInfoPubActivityInterface;
 
-import base.BaseActivity;
-import constants.Keys;
-import util.AnimatorUtil;
+import com.chan.jx3_market.base.BaseActivity;
+import com.chan.jx3_market.constants.Constants;
+import com.chan.jx3_market.util.AnimatorUtil;
 
 /**
  * Created by ex-qianlei349 on 2016-05-31.
@@ -108,7 +106,7 @@ public class GoldInfoPubActivity extends BaseActivity implements GoldInfoPubActi
             GoldInfo info = new GoldInfo();
             info.setCount(totalCount);
             info.setDealType(dealType);
-            info.setInfoType(Keys.PUBLISH_INFO_TYPE_GOLD);
+            info.setInfoType(Constants.PUBLISH_INFO_TYPE_GOLD);
             info.setProportion(proportion);
             info.setSupportLittleDeal(mSupportLittleDeal);
             info.setUsername(app.getUserInfo().getUsername());

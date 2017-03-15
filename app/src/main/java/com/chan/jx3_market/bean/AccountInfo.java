@@ -1,12 +1,6 @@
 package com.chan.jx3_market.bean;
 
-import android.content.Intent;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.text.TextUtils;
-
 import cn.bmob.v3.BmobObject;
-import constants.Keys;
 
 /**
  * Created by qianlei on 2016-04-01.10:32

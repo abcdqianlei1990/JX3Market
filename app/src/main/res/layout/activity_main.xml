@@ -16,7 +16,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:orientation="vertical">
 
             <!-- #############搜索框############## -->
@@ -28,7 +27,11 @@
                 android:layout_marginRight="10dp"
                 android:iconifiedByDefault="true"
                 android:imeOptions="actionSearch" />
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
             <!-- #############查看订单############## -->
             <android.support.v7.widget.CardView
                 android:id="@+id/main_search_all"
@@ -120,6 +123,7 @@
                     android:textColor="@android:color/holo_blue_bright"
                     android:textSize="20dp" />
             </android.support.v7.widget.CardView>
+            </LinearLayout>
         </LinearLayout>
 
         <android.support.design.widget.NavigationView
@@ -141,6 +145,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@android:drawable/ic_dialog_email" />
+        android:src="@mipmap/personal_center_selected"
+        />
 
 </android.support.design.widget.CoordinatorLayout>

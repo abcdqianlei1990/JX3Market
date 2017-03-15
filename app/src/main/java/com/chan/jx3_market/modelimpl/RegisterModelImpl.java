@@ -9,11 +9,11 @@ import com.chan.jx3_market.viewimpl.RegisterActivity;
 
 import org.json.JSONArray;
 
-import base.BaseModelImpl;
+import com.chan.jx3_market.base.BaseModelImpl;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindCallback;
 import cn.bmob.v3.listener.SaveListener;
-import constants.Keys;
+import com.chan.jx3_market.constants.Constants;
 
 /**
  * Created by qianlei on 2016-03-28.19:25
@@ -54,11 +54,11 @@ public class RegisterModelImpl extends BaseModelImpl implements IRegisterModel {
 
                         @Override
                         public void onFailure(int i, String s) {
-                            presenter.onRegisterFailure(Keys.NORMAL);
+                            presenter.onRegisterFailure(Constants.NORMAL);
                         }
                     });
                 } else {
-                    ret = Keys.USER_EXIST;
+                    ret = Constants.USER_EXIST;
                     presenter.onRegisterFailure(ret);
                 }
             }
@@ -66,7 +66,7 @@ public class RegisterModelImpl extends BaseModelImpl implements IRegisterModel {
             @Override
             public void onFailure(int i, String s) {
                 Log.d("chan", "failure ==>" + s);
-                presenter.onRegisterFailure(Keys.NORMAL);
+                presenter.onRegisterFailure(Constants.NORMAL);
             }
         });
 

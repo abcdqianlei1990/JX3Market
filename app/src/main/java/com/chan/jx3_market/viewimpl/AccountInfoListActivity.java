@@ -14,15 +14,16 @@ import android.widget.TextView;
 import com.chan.jx3_market.R;
 import com.chan.jx3_market.bean.AccountEntity;
 import com.chan.jx3_market.bean.AccountInfo;
+import com.chan.jx3_market.constants.Constants;
 import com.chan.jx3_market.presenterImpl.AccountInfoListPresenterImpl;
 import com.chan.jx3_market.view.IAccountInfoListActivity;
 
 import java.util.ArrayList;
 
-import adapter.AccountListAdapter;
-import base.BaseActivity;
-import listener.FooterViewClickListener;
-import listener.RecyclerViewItemClickListener;
+import com.chan.jx3_market.adapter.AccountListAdapter;
+import com.chan.jx3_market.base.BaseActivity;
+import com.chan.jx3_market.listener.FooterViewClickListener;
+import com.chan.jx3_market.listener.RecyclerViewItemClickListener;
 
 /**
  * Created by qianlei on 2016-04-05.15:00
@@ -57,7 +58,7 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
     }
 
     public void initViews() {
-        setContentView(R.layout.activity_accountinfo_list);
+        addContentView(R.layout.activity_accountinfo_list);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.accountinfo_list_sp);
         mRecyclerView = (RecyclerView) findViewById(R.id.accountinfo_list_recyclerview);
 
@@ -65,6 +66,7 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
     }
 
     public void initData(){
+        showLoadingPage();
         initDataPoolByPresenter(0);
         adapter = new AccountListAdapter(this,mData);
         adapter.setOnClickListener(this);
@@ -90,6 +92,7 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
     @Override
     public void onSuccess(AccountEntity entity) {
 //        mData.addAll(list);
+        hideLoadingPage();
         mTotal = entity.getTotal();
         ArrayList list = entity.getList();
         if(mSwipeRefreshLayout.isRefreshing()){
@@ -112,7 +115,14 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
 
     @Override
     public void onFailure(int code, String msg) {
-
+        switch (code){
+            case Constants.NETWORK_UNAVAILABLE:
+                showEmptyView(R.mipmap.ic_launcher,"网络错误");
+                break;
+            default:
+                showEmptyView(R.mipmap.ic_launcher,"暂无数据");
+                break;
+        }
     }
 
     @Override

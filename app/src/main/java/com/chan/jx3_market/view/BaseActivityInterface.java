@@ -1,6 +1,6 @@
 package com.chan.jx3_market.view;
 
-import base.BaseEntity;
+import com.chan.jx3_market.base.BaseEntity;
 
 /**
  * Created by qianlei on 2016-04-01.15:00

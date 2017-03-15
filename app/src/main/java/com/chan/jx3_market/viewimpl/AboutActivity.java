@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.chan.jx3_market.R;
 
-import base.BaseActivity;
+import com.chan.jx3_market.base.BaseActivity;
 
 /**
  * Created by qianlei on 2016-03-31.20:49

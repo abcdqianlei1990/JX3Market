@@ -2,7 +2,7 @@ package com.chan.jx3_market.bean;
 
 import java.util.ArrayList;
 
-import base.BaseEntity;
+import com.chan.jx3_market.base.BaseEntity;
 
 /**
  * Created by qianlei on 2016-04-06.10:00
