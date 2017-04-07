@@ -123,13 +123,7 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
     @Override
     public void onLoginSuccess(UserInfo info) {
         dismissLoadingDialog();
-        UserInfo i = new UserInfo();
-        i.setUsername(mUserNameEd.getText().toString().trim());
-        i.setPassword(mPasswordView.getText().toString().trim());
-        i.setPhone(info.getPhone());
-        i.setQq(info.getQq());
-        i.setYy(info.getYy());
-        app.setInfo(i);
+        app.setInfo(info);
         MainActivity.jumpToMainActivity(this);
         finish();
     }

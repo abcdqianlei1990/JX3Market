@@ -36,9 +36,9 @@ public class LoginModelImpl extends BaseModelImpl implements ILoginModel {
         query.findObjects(activity, new FindListener<UserInfo>() {
             @Override
             public void onSuccess(List<UserInfo> list) {
-                Log.d("chan", "jsonArray ==>" + list.toString());
                 if(list.size() > 0){
-                    presenter.onLoginSuccess(list.get(0));
+                    UserInfo userInfo = list.get(0);
+                    presenter.onLoginSuccess(userInfo);
                 }else{
                     presenter.onLoginFailure();
                 }
@@ -46,7 +46,6 @@ public class LoginModelImpl extends BaseModelImpl implements ILoginModel {
 
             @Override
             public void onError(int i, String s) {
-                Log.d("chan", "failure ==>" + s);
                 presenter.onLoginFailure();
             }
         });

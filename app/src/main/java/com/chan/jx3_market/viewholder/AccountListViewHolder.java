@@ -16,6 +16,7 @@ import com.chan.jx3_market.listener.RecyclerViewItemClickListener;
  */
 public class AccountListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public TextView title;
+    public TextView getContactBtn;
     public LinearLayout detailWrapper;
     public RelativeLayout baseInfoBlockRl;
     public LinearLayout pvpInfoBlockLl;
@@ -47,6 +48,7 @@ public class AccountListViewHolder extends RecyclerView.ViewHolder implements Vi
     public AccountListViewHolder(View itemView, RecyclerViewItemClickListener listener) {
         super(itemView);
         title = (TextView) itemView.findViewById(R.id.item_accountinfo_title);
+        getContactBtn = (TextView) itemView.findViewById(R.id.item_accountinfo_title_btn);
         detailWrapper = (LinearLayout) itemView.findViewById(R.id.item_accountinfo_detail);
         baseInfoBlockRl = (RelativeLayout) itemView.findViewById(R.id.item_accountinfo_baseinfo_block_rl);
         pvpInfoBlockLl = (LinearLayout) itemView.findViewById(R.id.item_accountinfo_pvpinfo_block_ll);

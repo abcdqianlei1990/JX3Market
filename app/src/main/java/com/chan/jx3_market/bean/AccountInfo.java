@@ -9,9 +9,9 @@ import cn.bmob.v3.BmobObject;
 public class AccountInfo extends BmobObject{
 
     /**
-     * 发布者用户名
+     * 发布者用户id
      */
-    private String username;
+    private String userId;
 
     /**
      * 发布信息类型
@@ -93,12 +93,12 @@ public class AccountInfo extends BmobObject{
      */
     private String other;
 
-    public String getUsername() {
-        return username;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public Integer getInfoType() {

@@ -10,7 +10,6 @@ import cn.bmob.v3.BmobObject;
  * class description:登录信息
  */
 public class UserInfo extends BmobObject{
-
     private String username;
     private String password;
     private String qq;
@@ -58,5 +57,16 @@ public class UserInfo extends BmobObject{
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", qq='" + qq + '\'' +
+                ", yy='" + yy + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }

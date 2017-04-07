@@ -14,7 +14,9 @@ import com.chan.jx3_market.bean.AccountInfo;
 import java.util.ArrayList;
 
 import com.chan.jx3_market.listener.FooterViewClickListener;
+import com.chan.jx3_market.listener.OnContactGetBtnClickListener;
 import com.chan.jx3_market.listener.RecyclerViewItemClickListener;
+import com.chan.jx3_market.util.AnimatorUtil;
 import com.chan.jx3_market.viewholder.AccountListViewHolder;
 import com.chan.jx3_market.viewholder.FooterViewHolder;
 
@@ -27,6 +29,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private Activity activity;
     private ArrayList<AccountInfo> data;
     private RecyclerViewItemClickListener listener;
+    private OnContactGetBtnClickListener onContactGetBtnClickListener;
     private FooterViewClickListener footerViewClickListener;
     private boolean hasFooter = false;
     int pos = 0;
@@ -59,6 +62,13 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             AccountInfo info = data.get(position);
 
             h.title.setText((position+1)+"."+info.getProfession()+" # "+info.getBodyType());
+            h.getContactBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AnimatorUtil.performClickAnimator(h.getContactBtn);
+                    onContactGetBtnClickListener.onContactGetBtnClick(position);
+                }
+            });
             //============================ BASE INFO ============================
             h.profession.setText("门派："+info.getProfession());
             h.bodyType.setText("体型："+info.getBodyType());
@@ -282,7 +292,9 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void setOnClickListener(RecyclerViewItemClickListener listener){
         this.listener = listener;
     }
-
+    public void setOnContactGetBtnClickListener(OnContactGetBtnClickListener listener){
+        this.onContactGetBtnClickListener = listener;
+    }
     public void setOnFooterClickListener(FooterViewClickListener footerViewClickListener){
         this.footerViewClickListener = footerViewClickListener;
     }

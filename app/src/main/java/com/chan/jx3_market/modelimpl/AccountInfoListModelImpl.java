@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.chan.jx3_market.bean.AccountEntity;
 import com.chan.jx3_market.bean.AccountInfo;
+import com.chan.jx3_market.bean.UserInfo;
 import com.chan.jx3_market.model.IAccountInfoListModel;
 import com.chan.jx3_market.presenterImpl.AccountInfoListPresenterImpl;
 import com.chan.jx3_market.viewimpl.AccountInfoListActivity;
@@ -16,6 +17,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindCallback;
+import cn.bmob.v3.listener.GetListener;
 import cn.bmob.v3.listener.SQLQueryListener;
 
 import com.chan.jx3_market.util.JsonUtil;
@@ -60,6 +62,22 @@ public class AccountInfoListModelImpl implements IAccountInfoListModel {
             @Override
             public void onFailure(int i, String s) {
                 presenter.onFailure(i,s);
+            }
+        });
+    }
+
+    @Override
+    public void getUserInfo(String userId) {
+        BmobQuery<UserInfo> query = new BmobQuery<UserInfo>();
+        query.getObject(activity, userId, new GetListener<UserInfo>() {
+            @Override
+            public void onSuccess(UserInfo userInfo) {
+                presenter.onGetUserInfoSuccess(userInfo);
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                presenter.onGetUserInfoFailure(i,s);
             }
         });
     }

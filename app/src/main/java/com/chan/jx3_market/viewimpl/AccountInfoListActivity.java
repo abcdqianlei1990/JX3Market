@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -16,8 +18,11 @@ import com.chan.jx3_market.R;
 import com.chan.jx3_market.adapter.BottomMarginDecoration;
 import com.chan.jx3_market.bean.AccountEntity;
 import com.chan.jx3_market.bean.AccountInfo;
+import com.chan.jx3_market.bean.UserInfo;
 import com.chan.jx3_market.constants.Constants;
+import com.chan.jx3_market.listener.OnContactGetBtnClickListener;
 import com.chan.jx3_market.presenterImpl.AccountInfoListPresenterImpl;
+import com.chan.jx3_market.util.TextUtil;
 import com.chan.jx3_market.util.UIUtil;
 import com.chan.jx3_market.view.IAccountInfoListActivity;
 
@@ -32,7 +37,7 @@ import com.chan.jx3_market.listener.RecyclerViewItemClickListener;
  * Created by qianlei on 2016-04-05.15:00
  * class description:
  */
-public class AccountInfoListActivity extends BaseActivity implements IAccountInfoListActivity, RecyclerViewItemClickListener, FooterViewClickListener,View.OnTouchListener{
+public class AccountInfoListActivity extends BaseActivity implements IAccountInfoListActivity, RecyclerViewItemClickListener, FooterViewClickListener,View.OnTouchListener,OnContactGetBtnClickListener{
 
     private AccountInfoListPresenterImpl presenter;
     private ArrayList<AccountInfo> mData = new ArrayList<AccountInfo>();
@@ -73,6 +78,7 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
         initDataPoolByPresenter(0);
         adapter = new AccountListAdapter(this,mData);
         adapter.setOnClickListener(this);
+        adapter.setOnContactGetBtnClickListener(this);
         adapter.setOnFooterClickListener(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new BottomMarginDecoration(UIUtil.dip2px(this,15)));
@@ -127,6 +133,17 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
                 showEmptyView(R.mipmap.ic_launcher,"暂无数据");
                 break;
         }
+    }
+
+    @Override
+    public void onGetUserInfoSuccess(UserInfo userInfo) {
+        dismissLoadingDialog();
+        showContactsDialog(userInfo);
+    }
+
+    @Override
+    public void onGetUserInfoFailure(int code, String msg) {
+        dismissLoadingDialog();
     }
 
     @Override
@@ -201,5 +218,45 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
             }
         }
         return false;
+    }
+
+    @Override
+    public void onContactGetBtnClick(int position) {
+        showLoadingDialog();
+        String userId = mData.get(position).getUserId();
+        presenter.getUserInfo(userId);
+    }
+
+    public void showContactsDialog(UserInfo info){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_user_contacts,null);
+        builder.setView(view);
+        TextView qqTv = (TextView) view.findViewById(R.id.dialog_user_contacts_qq);
+        TextView yyTv = (TextView) view.findViewById(R.id.dialog_user_contacts_yy);
+        TextView telTv = (TextView) view.findViewById(R.id.dialog_user_contacts_tel);
+        String qq = info.getQq();
+        String yy = info.getYy();
+        String phone = info.getPhone();
+        if(TextUtil.isEmpty(qq)){
+            qqTv.setVisibility(View.GONE);
+        }else {
+            qqTv.setVisibility(View.VISIBLE);
+            qqTv.setText("QQ : "+ qq);
+        }
+        if(TextUtil.isEmpty(yy)){
+            yyTv.setVisibility(View.GONE);
+        }else {
+            qqTv.setVisibility(View.VISIBLE);
+            yyTv.setText("YY : "+ yy);
+        }
+        if(TextUtil.isEmpty(phone)){
+            telTv.setVisibility(View.GONE);
+        }else {
+            qqTv.setVisibility(View.VISIBLE);
+            telTv.setText("TEL : "+ phone);
+        }
+        builder.setCancelable(true);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

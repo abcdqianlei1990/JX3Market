@@ -2,6 +2,7 @@ package com.chan.jx3_market.presenterImpl;
 
 import com.chan.jx3_market.bean.AccountEntity;
 import com.chan.jx3_market.bean.AccountInfo;
+import com.chan.jx3_market.bean.UserInfo;
 import com.chan.jx3_market.modelimpl.AccountInfoListModelImpl;
 import com.chan.jx3_market.presenter.IAccountInfoListPresenter;
 import com.chan.jx3_market.viewimpl.AccountInfoListActivity;
@@ -35,6 +36,21 @@ public class AccountInfoListPresenterImpl implements IAccountInfoListPresenter {
 
     @Override
     public void onFailure(int code, String msg) {
+        activity.onFailure(code,msg);
+    }
+
+    @Override
+    public void getUserInfo(String userId) {
+        model.getUserInfo(userId);
+    }
+
+    @Override
+    public void onGetUserInfoSuccess(UserInfo userInfo) {
+        activity.onGetUserInfoSuccess(userInfo);
+    }
+
+    @Override
+    public void onGetUserInfoFailure(int code, String msg) {
         activity.onFailure(code,msg);
     }
 }
