@@ -29,13 +29,13 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
 
     private EditText mProfession;
     private EditText mBodyType;
-    private EditText mPvpOrPve;
     private EditText mLimit;
     private EditText mHair;
     private EditText mClothes;
     private EditText mMount;
     private EditText mExpScore;
-    private EditText mScore;
+    private EditText mPveScore;
+    private EditText mPvpScore;
     private EditText mFace;
     private EditText mPet;
     private EditText mZhanjie;
@@ -58,13 +58,13 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
         setContentView(R.layout.activity_accountinfo_pub);
         mProfession = (EditText) findViewById(R.id.account_pub_profession);
         mBodyType = (EditText) findViewById(R.id.account_pub_body);
-        mPvpOrPve = (EditText) findViewById(R.id.account_pub_pvporpve);
         mLimit = (EditText) findViewById(R.id.account_pub_limit);
         mHair = (EditText) findViewById(R.id.account_pub_hair);
         mClothes = (EditText) findViewById(R.id.account_pub_clothes);
         mMount = (EditText) findViewById(R.id.account_pub_mount);
         mExpScore = (EditText) findViewById(R.id.account_pub_expscore);
-        mScore = (EditText) findViewById(R.id.account_pub_score);
+        mPveScore = (EditText) findViewById(R.id.account_pub_pveScore);
+        mPvpScore = (EditText) findViewById(R.id.account_pub_pvpScore);
         mFace = (EditText) findViewById(R.id.account_pub_face);
         mPet = (EditText) findViewById(R.id.account_pub_pet);
         mZhanjie = (EditText) findViewById(R.id.account_pub_zhangjie);
@@ -75,15 +75,15 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
 
         mProfession.addTextChangedListener(new MyTextChangedListener(mProfession));
         mBodyType.addTextChangedListener(new MyTextChangedListener(mBodyType));
-        mPvpOrPve.addTextChangedListener(new MyTextChangedListener(mPvpOrPve));
-        mScore.addTextChangedListener(new MyTextChangedListener(mScore));
+        mPveScore.addTextChangedListener(new MyTextChangedListener(mPveScore));
+        mPvpScore.addTextChangedListener(new MyTextChangedListener(mPvpScore));
         mExpScore.addTextChangedListener(new MyTextChangedListener(mExpScore));
         //设置焦点监控
         mProfession.setOnFocusChangeListener(this);
         mExpScore.setOnFocusChangeListener(this);
-        mScore.setOnFocusChangeListener(this);
+        mPveScore.setOnFocusChangeListener(this);
+        mPvpScore.setOnFocusChangeListener(this);
         mBodyType.setOnFocusChangeListener(this);
-        mPvpOrPve.setOnFocusChangeListener(this);
         mZhanjie.setOnFocusChangeListener(this);
         mJJCLv.setOnFocusChangeListener(this);
 
@@ -117,13 +117,13 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
         info.setUsername(app.getUserInfo().getUsername());
         info.setProfession(mProfession.getText().toString().trim());
         info.setBodyType(mBodyType.getText().toString().trim());
-        info.setPvpOrPve(mPvpOrPve.getText().toString().trim());
         info.setLimit(mLimit.getText().toString().trim());
         info.setHair(mHair.getText().toString().trim());
         info.setClothes(mClothes.getText().toString().trim());
         info.setMount(mMount.getText().toString().trim());
         info.setExpScore(mExpScore.getText().toString().trim());
-        info.setScore(mScore.getText().toString().trim());
+        info.setPveScore(mPveScore.getText().toString().trim());
+        info.setPvpScore(mPvpScore.getText().toString().trim());
         info.setFace(mFace.getText().toString().trim());
         info.setPet(mPet.getText().toString().trim());
         info.setZhanjie(mZhanjie.getText().toString().trim());
@@ -141,12 +141,12 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
     public boolean inputCheckedOK(){
         String pro = mProfession.getText().toString().trim();
         String body = mBodyType.getText().toString().trim();
-        String pv = mPvpOrPve.getText().toString().trim();
-        String score = mScore.getText().toString().trim();
+        String pveScore = mPveScore.getText().toString().trim();
+        String pvpScore = mPvpScore.getText().toString().trim();
         String exp = mExpScore.getText().toString().trim();
         String zhanjie = mZhanjie.getText().toString().trim();
         String jjc = mJJCLv.getText().toString().trim();
-        if(TextUtils.isEmpty(pro)||TextUtils.isEmpty(body)||TextUtils.isEmpty(pv)||TextUtils.isEmpty(score)
+        if(TextUtils.isEmpty(pro)||TextUtils.isEmpty(body) ||TextUtils.isEmpty(pveScore) ||TextUtils.isEmpty(pvpScore)
                 || TextUtils.isEmpty(exp) || TextUtils.isEmpty(zhanjie) || TextUtils.isEmpty(jjc)){
             return false;
         }
@@ -173,19 +173,19 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
                     mProfession.setError("该项为必填项");
                 }
                 break;
-            case R.id.account_pub_pvporpve:
-                if(!hasFocus && TextUtils.isEmpty(mPvpOrPve.getText().toString().trim())){
-                    mPvpOrPve.setError("该项为必填项");
-                }
-                break;
             case R.id.account_pub_body:
                 if(!hasFocus && TextUtils.isEmpty(mBodyType.getText().toString().trim())){
                     mBodyType.setError("该项为必填项");
                 }
                 break;
-            case R.id.account_pub_score:
-                if(!hasFocus && TextUtils.isEmpty(mScore.getText().toString().trim())){
-                    mScore.setError("该项为必填项");
+            case R.id.account_pub_pveScore:
+                if(!hasFocus && TextUtils.isEmpty(mPveScore.getText().toString().trim())){
+                    mPveScore.setError("该项为必填项");
+                }
+                break;
+            case R.id.account_pub_pvpScore:
+                if(!hasFocus && TextUtils.isEmpty(mPvpScore.getText().toString().trim())){
+                    mPvpScore.setError("该项为必填项");
                 }
                 break;
             case R.id.account_pub_expscore:

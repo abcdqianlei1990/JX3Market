@@ -23,6 +23,7 @@ public class AccountInfoPubPresenterImpl implements IAccountInfoPubPresenter {
 
     @Override
     public void performSubmitClickEvent(AccountInfo info) {
+        activity.showLoadingDialog();
         model.userPubInfoCheck(info);
         model.insertToDB(info);
     }

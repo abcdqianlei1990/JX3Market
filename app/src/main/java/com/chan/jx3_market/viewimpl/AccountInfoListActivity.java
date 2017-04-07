@@ -9,13 +9,16 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.chan.jx3_market.R;
+import com.chan.jx3_market.adapter.BottomMarginDecoration;
 import com.chan.jx3_market.bean.AccountEntity;
 import com.chan.jx3_market.bean.AccountInfo;
 import com.chan.jx3_market.constants.Constants;
 import com.chan.jx3_market.presenterImpl.AccountInfoListPresenterImpl;
+import com.chan.jx3_market.util.UIUtil;
 import com.chan.jx3_market.view.IAccountInfoListActivity;
 
 import java.util.ArrayList;
@@ -47,7 +50,7 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
 
     int pointX;
     int pointY;
-
+    private int currentOpenItemPos = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +75,7 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
         adapter.setOnClickListener(this);
         adapter.setOnFooterClickListener(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.addItemDecoration(new BottomMarginDecoration(UIUtil.dip2px(this,15)));
         mRecyclerView.setAdapter(adapter);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -126,8 +130,24 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
     }
 
     @Override
-    public void onClick() {
-        Log.d("chan","item is clicked...");
+    public void onClick(View view,int position) {
+        RecyclerView.LayoutManager manager = mRecyclerView.getLayoutManager();
+        View itemView = manager.findViewByPosition(position);
+        LinearLayout detailWrapper = (LinearLayout) itemView.findViewById(R.id.item_accountinfo_detail);
+        if(currentOpenItemPos == -1){
+            detailWrapper.setVisibility(View.VISIBLE);
+            currentOpenItemPos = position;
+        }else {
+            if(currentOpenItemPos == position){
+                detailWrapper.setVisibility(View.GONE);
+                currentOpenItemPos = -1;
+            }else {
+                LinearLayout detailWrapper2 = (LinearLayout) manager.findViewByPosition(currentOpenItemPos).findViewById(R.id.item_accountinfo_detail);
+                detailWrapper2.setVisibility(View.GONE);
+                detailWrapper.setVisibility(View.VISIBLE);
+                currentOpenItemPos = position;
+            }
+        }
     }
 
     @Override
@@ -171,11 +191,11 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
                     Log.d("chan", "X轴移动：" + distanceX + "|Y轴移动：" + distanceY);
 
                     if(distanceY > 250){
-                        if(mTotal == mData.size()){
-                            showToast(mRecyclerView,"暂无更多数据");
-                        }else if(mTotal > mData.size()){
-                            initDataPoolByPresenter(mData.size());
-                        }
+//                        if(mTotal == mData.size()){
+//                            showToast(mRecyclerView,"暂无更多数据");
+//                        }else if(mTotal > mData.size()){
+//                            initDataPoolByPresenter(mData.size());
+//                        }
                     }
                     break;
             }

@@ -29,14 +29,14 @@ public class AccountInfo extends BmobObject{
     private String bodyType;
 
     /**
-     * pvp pve
+     * pvp装分
      */
-    private String pvpOrPve;
+    private String pvpScore;
 
     /**
-     * 装分
+     * pve装分
      */
-    private String score;
+    private String pveScore;
 
     /**
      * 资历
@@ -125,20 +125,20 @@ public class AccountInfo extends BmobObject{
         this.bodyType = bodyType;
     }
 
-    public String getPvpOrPve() {
-        return pvpOrPve;
+    public String getPvpScore() {
+        return pvpScore;
     }
 
-    public void setPvpOrPve(String pvpOrPve) {
-        this.pvpOrPve = pvpOrPve;
+    public void setPvpScore(String pvpScore) {
+        this.pvpScore = pvpScore;
     }
 
-    public String getScore() {
-        return score;
+    public String getPveScore() {
+        return pveScore;
     }
 
-    public void setScore(String score) {
-        this.score = score;
+    public void setPveScore(String pveScore) {
+        this.pveScore = pveScore;
     }
 
     public String getExpScore() {

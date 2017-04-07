@@ -38,11 +38,13 @@ public class AccountInfoPubModelImpl implements IInfoPubModel {
         info.save(activity, new SaveListener() {
             @Override
             public void onSuccess() {
+                activity.dismissLoadingDialog();
                 presenter.onDataSaveSuccess();
             }
 
             @Override
             public void onFailure(int i, String s) {
+                activity.dismissLoadingDialog();
                 presenter.onDataSaveFailure(i,s);
             }
         });
