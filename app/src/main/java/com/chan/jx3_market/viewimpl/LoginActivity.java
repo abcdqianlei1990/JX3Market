@@ -1,5 +1,7 @@
 package com.chan.jx3_market.viewimpl;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -145,6 +147,11 @@ public class LoginActivity extends BaseActivity implements ILogin,OnClickListene
             return false;
         }
         return true;
+    }
+
+    public static void jumpToThisActivity(Activity activity){
+        Intent intent = new Intent(activity,LoginActivity.class);
+        activity.startActivity(intent);
     }
 }
 

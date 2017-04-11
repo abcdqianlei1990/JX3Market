@@ -13,6 +13,7 @@ import com.chan.jx3_market.bean.AccountInfo;
 
 import java.util.ArrayList;
 
+import com.chan.jx3_market.constants.Constants;
 import com.chan.jx3_market.listener.FooterViewClickListener;
 import com.chan.jx3_market.listener.OnContactGetBtnClickListener;
 import com.chan.jx3_market.listener.RecyclerViewItemClickListener;
@@ -61,7 +62,10 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             final AccountListViewHolder h = (AccountListViewHolder) holder;
             AccountInfo info = data.get(position);
 
-            h.title.setText((position+1)+"."+info.getProfession()+" # "+info.getBodyType());
+            Integer bodyType = info.getBodyType();
+            String bodyTypeStr = getBodyTypeStr(bodyType);
+
+            h.title.setText((position+1)+"."+info.getProfession()+" # "+ bodyTypeStr);
             h.getContactBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -69,9 +73,6 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     onContactGetBtnClickListener.onContactGetBtnClick(position);
                 }
             });
-            //============================ BASE INFO ============================
-            h.profession.setText("门派："+info.getProfession());
-            h.bodyType.setText("体型："+info.getBodyType());
 
             //============================ PVP INFO ============================
             String pvpScore = info.getPvpScore();
@@ -80,10 +81,8 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             if((TextUtils.isEmpty(pvpScore) || "0".equals(pvpScore)) && (TextUtils.isEmpty(zhanjie) || "0".equals(zhanjie))
                     && (TextUtils.isEmpty(jjcLv) || "0".equals(jjcLv))){
                 h.pvpInfoBlockLl.setVisibility(View.GONE);
-                h.blockLine1.setVisibility(View.GONE);
             }else {
                 h.pvpInfoBlockLl.setVisibility(View.VISIBLE);
-                h.blockLine1.setVisibility(View.VISIBLE);
                 h.pvpScore.setText("装分："+ pvpScore);
                 //战阶
                 if (TextUtils.isEmpty(zhanjie) || "0".equals(zhanjie)) {
@@ -301,5 +300,28 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public void hasFooter(boolean b){
         this.hasFooter = b;
+    }
+
+    /**
+     * 获取体型对应枚举值
+     * @param bodyType
+     * @return
+     */
+    private String getBodyTypeStr(Integer bodyType){
+        if (bodyType == null){
+            return activity.getString(R.string.undefined);
+        }
+        switch (bodyType){
+            case Constants.BodyType.male:
+                return activity.getString(R.string.body_type_1);
+            case Constants.BodyType.female:
+                return activity.getString(R.string.body_type_2);
+            case Constants.BodyType.boy:
+                return activity.getString(R.string.body_type_3);
+            case Constants.BodyType.girl:
+                return activity.getString(R.string.body_type_4);
+            default:
+                return activity.getString(R.string.undefined);
+        }
     }
 }

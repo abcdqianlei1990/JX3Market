@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/dialog_filter_profession_title_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/dialog_filter_profession_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="门派"
+                android:textColor="@color/commonTextColorGrayColor_6"
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/dialog_filter_profession_selected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/dialog_filter_profession_arrow"
+                android:layout_toRightOf="@+id/dialog_filter_profession_content"
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/sp_15" />
+
+            <TextView
+                android:id="@+id/dialog_filter_profession_arrow"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/ic_expand_more_black_24dp" />
+        </RelativeLayout>
+
+        <com.chan.jx3_market.widget.MyGridRecyclerView
+            android:id="@+id/dialog_filter_profession_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:visibility="gone"
+            app:spanCount="3" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/commonLineColor"
+            android:layout_marginTop="15dp"/>
+        <RelativeLayout
+            android:id="@+id/dialog_filter_bodyType_title_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/dialog_filter_bodyType_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="体型"
+                android:textColor="@color/commonTextColorGrayColor_6"
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/dialog_filter_bodyType_selected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/dialog_filter_bodyType_arrow"
+                android:layout_toRightOf="@+id/dialog_filter_bodyType_content"
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/sp_15" />
+
+            <TextView
+                android:id="@+id/dialog_filter_bodyType_arrow"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/ic_expand_more_black_24dp" />
+        </RelativeLayout>
+
+        <com.chan.jx3_market.widget.MyGridRecyclerView
+            android:id="@+id/dialog_filter_bodyType_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:visibility="gone"
+            app:spanCount="4" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/commonLineColor"
+            android:layout_marginTop="15dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:paddingBottom="15dp"
+            >
+            <TextView
+                android:id="@+id/dialog_filter_confirm_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/commonTextColorGrayColor_3"
+                android:textSize="@dimen/sp_18"
+                android:background="@drawable/bg_common_black_border"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_toLeftOf="@+id/dialog_filter_reset_btn"
+                android:layout_marginRight="20dp"
+                android:text="确定"/>
+            <TextView
+                android:id="@+id/dialog_filter_reset_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/commonTextColorGrayColor_3"
+                android:textSize="@dimen/sp_18"
+                android:background="@drawable/bg_common_black_border"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="重置"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

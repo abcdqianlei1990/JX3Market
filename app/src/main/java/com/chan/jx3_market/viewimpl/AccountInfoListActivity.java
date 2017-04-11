@@ -3,25 +3,32 @@ package com.chan.jx3_market.viewimpl;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.a.a.V;
+import com.chan.jx3_market.BuildConfig;
 import com.chan.jx3_market.R;
 import com.chan.jx3_market.adapter.BottomMarginDecoration;
 import com.chan.jx3_market.bean.AccountEntity;
 import com.chan.jx3_market.bean.AccountInfo;
+import com.chan.jx3_market.bean.ProfessionInfo;
 import com.chan.jx3_market.bean.UserInfo;
 import com.chan.jx3_market.constants.Constants;
 import com.chan.jx3_market.listener.OnContactGetBtnClickListener;
 import com.chan.jx3_market.presenterImpl.AccountInfoListPresenterImpl;
+import com.chan.jx3_market.util.JsonUtil;
 import com.chan.jx3_market.util.TextUtil;
 import com.chan.jx3_market.util.UIUtil;
 import com.chan.jx3_market.view.IAccountInfoListActivity;
@@ -32,6 +39,7 @@ import com.chan.jx3_market.adapter.AccountListAdapter;
 import com.chan.jx3_market.base.BaseActivity;
 import com.chan.jx3_market.listener.FooterViewClickListener;
 import com.chan.jx3_market.listener.RecyclerViewItemClickListener;
+import com.chan.jx3_market.widget.MyGridRecyclerView;
 
 /**
  * Created by qianlei on 2016-04-05.15:00
@@ -66,6 +74,15 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
     }
 
     public void initViews() {
+        showRightTv(true);
+        setRightTvContent("筛选");
+        mTitleRightTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast(mTitleRightTv,"跳转到筛选页");
+                showFilterDialog();
+            }
+        });
         addContentView(R.layout.activity_accountinfo_list);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.accountinfo_list_sp);
         mRecyclerView = (RecyclerView) findViewById(R.id.accountinfo_list_recyclerview);
@@ -258,5 +275,183 @@ public class AccountInfoListActivity extends BaseActivity implements IAccountInf
         builder.setCancelable(true);
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private SparseArray<String> selectes = new SparseArray<>();
+    private SparseArray<String> selecteBodyType = new SparseArray<>();
+    private ArrayList<ProfessionInfo> mProfessionsData = new ArrayList<>();
+    private ArrayList<String> professions = new ArrayList<>();
+    private ArrayList<String> bodyTypeData = new ArrayList<>();   //在用户选择门派后再初始化该信息
+    public void showFilterDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_filter,null);
+        RelativeLayout title = (RelativeLayout) view.findViewById(R.id.dialog_filter_profession_title_wrapper);
+        final TextView selectedTv = (TextView) view.findViewById(R.id.dialog_filter_profession_selected);
+        final TextView arrowTv = (TextView) view.findViewById(R.id.dialog_filter_profession_arrow);
+        final MyGridRecyclerView gridRecyclerView = (MyGridRecyclerView) view.findViewById(R.id.dialog_filter_profession_group);
+        //body type
+        RelativeLayout bodyTypeTitle = (RelativeLayout) view.findViewById(R.id.dialog_filter_bodyType_title_wrapper);
+        final TextView bodyTypeSelectedTv = (TextView) view.findViewById(R.id.dialog_filter_bodyType_selected);
+        final TextView bodyTypeArrowTv = (TextView) view.findViewById(R.id.dialog_filter_bodyType_arrow);
+        final MyGridRecyclerView bodyTypeGridRecyclerView = (MyGridRecyclerView) view.findViewById(R.id.dialog_filter_bodyType_group);
+
+        final TextView confirmBtn = (TextView) view.findViewById(R.id.dialog_filter_confirm_btn);
+        final TextView resetBtn = (TextView) view.findViewById(R.id.dialog_filter_reset_btn);
+
+        String currentSelects1 = getCurrentSelects(selectes);
+        selectedTv.setText(currentSelects1);
+        String currentSelects2 = getCurrentSelects(selecteBodyType);
+        bodyTypeSelectedTv.setText(currentSelects2);
+
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int visibility = gridRecyclerView.getVisibility();
+                if(visibility == View.GONE){
+                    gridRecyclerView.setVisibility(View.VISIBLE);
+                    arrowTv.setBackgroundDrawable(getResources().getDrawable(R.mipmap.ic_expand_less_black_24dp));
+                }else {
+                    gridRecyclerView.setVisibility(View.GONE);
+                    arrowTv.setBackgroundDrawable(getResources().getDrawable(R.mipmap.ic_expand_more_black_24dp));
+                }
+            }
+        });
+        bodyTypeTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int visibility = bodyTypeGridRecyclerView.getVisibility();
+                if(visibility == View.GONE){
+                    bodyTypeGridRecyclerView.setVisibility(View.VISIBLE);
+                    bodyTypeArrowTv.setBackgroundDrawable(getResources().getDrawable(R.mipmap.ic_expand_less_black_24dp));
+                }else {
+                    bodyTypeGridRecyclerView.setVisibility(View.GONE);
+                    bodyTypeArrowTv.setBackgroundDrawable(getResources().getDrawable(R.mipmap.ic_expand_more_black_24dp));
+                }
+            }
+        });
+        //初始化门派信息
+        if(professions.size() <= 0){
+            mProfessionsData = JsonUtil.getProfession(this);
+            ArrayList<String> professions = getProfessions(mProfessionsData);
+            this.professions.addAll(professions);
+        }
+        gridRecyclerView.setSelectedData(selectes);
+        gridRecyclerView.setArrayDataAndRefresh(professions);
+
+        //初始化体型信息
+        if(bodyTypeData.size() <= 0){
+            ArrayList<String> tmp = new ArrayList();
+            tmp.add(getResources().getString(R.string.body_type_1));
+            tmp.add(getResources().getString(R.string.body_type_2));
+            tmp.add(getResources().getString(R.string.body_type_3));
+            tmp.add(getResources().getString(R.string.body_type_4));
+            this.bodyTypeData.addAll(tmp);
+        }
+        bodyTypeGridRecyclerView.setSelectedData(selecteBodyType);
+        bodyTypeGridRecyclerView.setArrayDataAndRefresh(bodyTypeData);
+
+        gridRecyclerView.setOnRecyclerViewItemClickListener(new com.chan.jx3_market.listener.RecyclerViewItemClickListener() {
+            @Override
+            public void onClick(View view, int postion) {
+                String profession = professions.get(postion);
+                String s = selectes.get(postion);
+                if(s == null){
+                    selectes.put(postion,profession);
+                }else {
+                    selectes.remove(postion);
+                }
+                String currentSelects = getCurrentSelects(selectes);
+                selectedTv.setText(currentSelects);
+            }
+        });
+        bodyTypeGridRecyclerView.setOnRecyclerViewItemClickListener(new com.chan.jx3_market.listener.RecyclerViewItemClickListener() {
+            @Override
+            public void onClick(View view, int postion) {
+                String profession = bodyTypeData.get(postion);
+                String s = selecteBodyType.get(postion);
+                if(s == null){
+                    selecteBodyType.put(postion,profession);
+                }else {
+                    selecteBodyType.remove(postion);
+                }
+                String currentSelects = getCurrentSelects(selecteBodyType);
+                bodyTypeSelectedTv.setText(currentSelects);
+            }
+        });
+
+        builder.setView(view);
+        builder.setCancelable(true);
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIUtil.performClickAnimator(confirmBtn);
+                dialog.dismiss();
+            }
+        });
+        resetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIUtil.performClickAnimator(resetBtn);
+                selectes.clear();
+                gridRecyclerView.clearCache();
+                gridRecyclerView.setArrayDataAndRefresh(professions);
+
+                selecteBodyType.clear();
+                bodyTypeGridRecyclerView.clearCache();
+                bodyTypeGridRecyclerView.setArrayDataAndRefresh(bodyTypeData);
+
+                selectedTv.setText("");
+                bodyTypeSelectedTv.setText("");
+            }
+        });
+    }
+
+    /**
+     * 获取当前选中的值
+     * @return
+     */
+    public String getCurrentSelects(SparseArray<String> list){
+        StringBuffer sb = new StringBuffer();
+        int size = list.size();
+        for (int i = 0; i < size; i++){
+            int key = list.keyAt(i);
+            String s = list.get(key);
+            sb.append(s);
+            if(i != (size - 1)){
+                sb.append("、");
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 提取出门派信息
+     * @param list
+     * @return
+     */
+    public ArrayList<String> getProfessions(ArrayList<ProfessionInfo> list){
+        ArrayList<String> res = new ArrayList<>();
+        for (ProfessionInfo info:list){
+            res.add(info.getProfession());
+        }
+        return res;
+    }
+
+    /**
+     * 提取出门派对应心法信息
+     * @param list
+     * @return
+     */
+    public ArrayList<String> getSubProfessions(ArrayList<ProfessionInfo> list,@NonNull String profession){
+        ArrayList<String> res = new ArrayList<>();
+        for (ProfessionInfo info:list){
+            if (profession.equals(info.getProfession())){
+                res.addAll(info.getSubProfession());
+                break;
+            }
+        }
+        return res;
     }
 }

@@ -3,6 +3,8 @@ package com.chan.jx3_market.viewimpl;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -10,6 +12,8 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.chan.jx3_market.R;
 import com.chan.jx3_market.bean.AccountInfo;
@@ -28,7 +32,6 @@ import com.chan.jx3_market.util.AnimatorUtil;
 public class AccountInfoPubActivity extends BaseActivity implements IAccountInfoPubActivity,View.OnClickListener,View.OnFocusChangeListener{
 
     private EditText mProfession;
-    private EditText mBodyType;
     private EditText mLimit;
     private EditText mHair;
     private EditText mClothes;
@@ -43,10 +46,11 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
     private EditText mCalling;
     private EditText mOther;
     private CardView mSubmit;
+    private RadioGroup mBodyTypeRadioGroup;
 
 
     private AccountInfoPubPresenterImpl presenter;
-
+    private int mBodyTypeInt = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +61,6 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
     public void initViews(){
         setContentView(R.layout.activity_accountinfo_pub);
         mProfession = (EditText) findViewById(R.id.account_pub_profession);
-        mBodyType = (EditText) findViewById(R.id.account_pub_body);
         mLimit = (EditText) findViewById(R.id.account_pub_limit);
         mHair = (EditText) findViewById(R.id.account_pub_hair);
         mClothes = (EditText) findViewById(R.id.account_pub_clothes);
@@ -72,9 +75,9 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
         mCalling = (EditText) findViewById(R.id.account_pub_calling);
         mOther = (EditText) findViewById(R.id.account_pub_other);
         mSubmit = (CardView) findViewById(R.id.account_pub_submit);
+        mBodyTypeRadioGroup = (RadioGroup) findViewById(R.id.account_pub_rg);
 
         mProfession.addTextChangedListener(new MyTextChangedListener(mProfession));
-        mBodyType.addTextChangedListener(new MyTextChangedListener(mBodyType));
         mPveScore.addTextChangedListener(new MyTextChangedListener(mPveScore));
         mPvpScore.addTextChangedListener(new MyTextChangedListener(mPvpScore));
         mExpScore.addTextChangedListener(new MyTextChangedListener(mExpScore));
@@ -83,13 +86,32 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
         mExpScore.setOnFocusChangeListener(this);
         mPveScore.setOnFocusChangeListener(this);
         mPvpScore.setOnFocusChangeListener(this);
-        mBodyType.setOnFocusChangeListener(this);
         mZhanjie.setOnFocusChangeListener(this);
         mJJCLv.setOnFocusChangeListener(this);
 
 
         mSubmit.setOnClickListener(this);
-
+        mBodyTypeRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                switch (checkedId){
+                    case R.id.account_pub_rb_1:
+                        mBodyTypeInt = Constants.BodyType.male;
+                        break;
+                    case R.id.account_pub_rb_2:
+                        mBodyTypeInt = Constants.BodyType.female;
+                        break;
+                    case R.id.account_pub_rb_3:
+                        mBodyTypeInt = Constants.BodyType.boy;
+                        break;
+                    case R.id.account_pub_rb_4:
+                        mBodyTypeInt = Constants.BodyType.girl;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
     }
     public static void jumpToThisActivity(Activity activity){
         Intent intent = new Intent(activity,AccountInfoPubActivity.class);
@@ -116,7 +138,7 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
         AccountInfo info = new AccountInfo();
         info.setUserId(app.getUserInfo().getObjectId());
         info.setProfession(mProfession.getText().toString().trim());
-        info.setBodyType(mBodyType.getText().toString().trim());
+        info.setBodyType(mBodyTypeInt);
         info.setLimit(mLimit.getText().toString().trim());
         info.setHair(mHair.getText().toString().trim());
         info.setClothes(mClothes.getText().toString().trim());
@@ -140,13 +162,12 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
      */
     public boolean inputCheckedOK(){
         String pro = mProfession.getText().toString().trim();
-        String body = mBodyType.getText().toString().trim();
         String pveScore = mPveScore.getText().toString().trim();
         String pvpScore = mPvpScore.getText().toString().trim();
         String exp = mExpScore.getText().toString().trim();
         String zhanjie = mZhanjie.getText().toString().trim();
         String jjc = mJJCLv.getText().toString().trim();
-        if(TextUtils.isEmpty(pro)||TextUtils.isEmpty(body) ||TextUtils.isEmpty(pveScore) ||TextUtils.isEmpty(pvpScore)
+        if(TextUtils.isEmpty(pro)|| (mBodyTypeInt == -1) ||TextUtils.isEmpty(pveScore) ||TextUtils.isEmpty(pvpScore)
                 || TextUtils.isEmpty(exp) || TextUtils.isEmpty(zhanjie) || TextUtils.isEmpty(jjc)){
             return false;
         }
@@ -171,11 +192,6 @@ public class AccountInfoPubActivity extends BaseActivity implements IAccountInfo
             case R.id.account_pub_profession:
                 if(!hasFocus && TextUtils.isEmpty(mProfession.getText().toString().trim())){
                     mProfession.setError("该项为必填项");
-                }
-                break;
-            case R.id.account_pub_body:
-                if(!hasFocus && TextUtils.isEmpty(mBodyType.getText().toString().trim())){
-                    mBodyType.setError("该项为必填项");
                 }
                 break;
             case R.id.account_pub_pveScore:

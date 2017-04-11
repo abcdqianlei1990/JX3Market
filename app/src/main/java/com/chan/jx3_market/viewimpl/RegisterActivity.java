@@ -89,10 +89,13 @@ public class RegisterActivity extends BaseActivity implements IRegister,View.OnC
     @Override
     public void onRegisterSuccess() {
         showToast(mRegisterBtn,"注册成功，您可以使用该账户登录！");
+        LoginActivity.jumpToThisActivity(this);
+        finish();
     }
 
     @Override
     public void onRegisterFailure(int code) {
+        dismissLoadingDialog();
         switch (code){
             case Constants.NORMAL:
                 showToast(mRegisterBtn,"注册失败！");
@@ -107,7 +110,7 @@ public class RegisterActivity extends BaseActivity implements IRegister,View.OnC
     public void onClick(View v) {
         int id = v.getId();
         if(R.id.register_sign_up == id){
-
+            showLoadingDialog();
             AnimatorUtil.performClickAnimator(mRegisterBtn);
 
             String username = getUserName();

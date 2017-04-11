@@ -60,4 +60,14 @@ public interface Constants {
     int LOGIN_ERR = 9017;
     int PARAMS_NULL = 9018;
     int FORMAT_ERR = 9019;
+
+    /**
+     * 1-成男, 2-成女,3-正太,4-萝莉
+     */
+    interface BodyType{
+        int male = 1;
+        int female = 2;
+        int boy = 3;
+        int girl = 4;
+    }
 }

@@ -26,7 +26,7 @@ public class AccountInfo extends BmobObject{
     /**
      * 体型
      */
-    private String bodyType;
+    private Integer bodyType;
 
     /**
      * pvp装分
@@ -117,11 +117,11 @@ public class AccountInfo extends BmobObject{
         this.profession = profession;
     }
 
-    public String getBodyType() {
+    public Integer getBodyType() {
         return bodyType;
     }
 
-    public void setBodyType(String bodyType) {
+    public void setBodyType(Integer bodyType) {
         this.bodyType = bodyType;
     }
 

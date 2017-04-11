@@ -18,13 +18,10 @@ public class AccountListViewHolder extends RecyclerView.ViewHolder implements Vi
     public TextView title;
     public TextView getContactBtn;
     public LinearLayout detailWrapper;
-    public RelativeLayout baseInfoBlockRl;
     public LinearLayout pvpInfoBlockLl;
     public LinearLayout pveInfoBlockLl;
     public LinearLayout outlookInfoBlockLl;
     public LinearLayout otherInfoBlockLl;
-    public TextView profession;
-    public TextView bodyType;
     public TextView pvpScore;
     public TextView zhanjie;
     public TextView jjcLv;
@@ -39,7 +36,6 @@ public class AccountListViewHolder extends RecyclerView.ViewHolder implements Vi
     public TextView calling;
     public TextView expScore;
     public TextView other;
-    public View blockLine1;
     public View blockLine2;
     public View blockLine3;
     public View blockLine4;
@@ -50,18 +46,15 @@ public class AccountListViewHolder extends RecyclerView.ViewHolder implements Vi
         title = (TextView) itemView.findViewById(R.id.item_accountinfo_title);
         getContactBtn = (TextView) itemView.findViewById(R.id.item_accountinfo_title_btn);
         detailWrapper = (LinearLayout) itemView.findViewById(R.id.item_accountinfo_detail);
-        baseInfoBlockRl = (RelativeLayout) itemView.findViewById(R.id.item_accountinfo_baseinfo_block_rl);
         pvpInfoBlockLl = (LinearLayout) itemView.findViewById(R.id.item_accountinfo_pvpinfo_block_ll);
         pveInfoBlockLl = (LinearLayout) itemView.findViewById(R.id.item_accountinfo_pveinfo_block_ll);
         outlookInfoBlockLl = (LinearLayout) itemView.findViewById(R.id.item_accountinfo_outlook_block_ll);
         otherInfoBlockLl = (LinearLayout) itemView.findViewById(R.id.item_accountinfo_others_block_ll);
 
-        blockLine1 = itemView.findViewById(R.id.item_accountinfo_block_line1);
         blockLine2 = itemView.findViewById(R.id.item_accountinfo_block_line2);
         blockLine3 = itemView.findViewById(R.id.item_accountinfo_block_line3);
         blockLine4 = itemView.findViewById(R.id.item_accountinfo_block_line4);
 
-        profession = (TextView) itemView.findViewById(R.id.profession);
         limit = (TextView) itemView.findViewById(R.id.limit);
         hair = (TextView) itemView.findViewById(R.id.hair);
         face = (TextView) itemView.findViewById(R.id.face);
@@ -71,7 +64,6 @@ public class AccountListViewHolder extends RecyclerView.ViewHolder implements Vi
         mount = (TextView) itemView.findViewById(R.id.mount);
         zhanjie = (TextView) itemView.findViewById(R.id.zhanjie);
         jjcLv = (TextView) itemView.findViewById(R.id.jjcLv);
-        bodyType = (TextView) itemView.findViewById(R.id.bodyType);
         pvpScore = (TextView) itemView.findViewById(R.id.item_accountinfo_pvp_score);
         pveScore = (TextView) itemView.findViewById(R.id.item_accountinfo_pve_score);
         expScore = (TextView) itemView.findViewById(R.id.expScore);
